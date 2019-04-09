@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoVisiting.Data;
@@ -20,7 +21,10 @@ namespace CoVisiting.Service
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Categories.Where(c => c.Id == id)
+                .Include(c => c.Events).ThenInclude(e => e.User)
+                .Include(c => c.Events).ThenInclude(e => e.Replies).ThenInclude(r => r.User)
+                .FirstOrDefault();
         }
 
         public IEnumerable<Category> GetAll()

@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoVisiting.Data\CoVisiting.Data.csproj" />
+    <ProjectReference Include="..\CoVisiting.Service\CoVisiting.Service.csproj" />
   </ItemGroup>
 
 </Project>

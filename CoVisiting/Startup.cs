@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoVisiting.Data;
+using CoVisiting.Data.Interfaces;
 using CoVisiting.Data.Models;
 using CoVisiting.Models;
+using CoVisiting.Service;
 using CoVisiting.Services;
 
 namespace CoVisiting
@@ -36,6 +38,8 @@ namespace CoVisiting
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<ICategory, CategoryService>();
+            services.AddScoped<IEvent, EventService>();
 
             services.AddMvc();
         }
