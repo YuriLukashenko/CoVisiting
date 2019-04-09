@@ -6,5 +6,11 @@ namespace CoVisiting.Data.Models
 {
     public class EventReply
     {
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public DateTime Created { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

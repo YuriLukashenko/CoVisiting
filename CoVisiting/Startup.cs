@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CoVisiting.Data;
+using CoVisiting.Data.Models;
 using CoVisiting.Models;
 using CoVisiting.Services;
 
