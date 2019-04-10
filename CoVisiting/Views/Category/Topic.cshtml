@@ -1,40 +1,52 @@
 ﻿@model CoVisiting.Models.Category.CategoryTopicModel
 
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <span id="headingBtn">
+        <a asp-controller="Event"
+           asp-action="Create"
+           asp-route-id="@Model.Category.Id" class="btn btn-newPost">Create Post</a>
+    </span>
+}
+
 @if (Model.Events.Any())
 {
     <table class="table table-hover table-bordered" id="forumIndexTable">
         <tbody>
             @foreach (var newEvent in Model.Events)
             {
-                <tr>
-                    <td>
-                        <div class="postData">
-                            <div class="postTitle">
-                                <a asp-controller="Post" asp-action="Index" asp-route-id="@newEvent.Id">
-                                    @newEvent.Title
-                                </a>
-                            </div>
-                            <div class="forumSubTitle">
-                                <div>
-                                    <span class="postAuthor">
-                                        <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
-                                            @newEvent.AuthorName
-                                        </a>
-                                    </span>
-                                    (@newEvent.AuthorRating)
-                                </div>
+            <tr>
+                <td>
+                    <div class="postData">
+                        <div class="postTitle">
+                            <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id">
+                                @newEvent.Title
+                            </a>
+                        </div>
+                        <div class="forumSubTitle">
+                            <div>
+                                <span class="postAuthor">
+                                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
+                                        @newEvent.AuthorName
+                                    </a>
+                                </span>
+                                (@newEvent.AuthorRating)
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        <div class="forumPostCount">
-                            Replies: @newEvent.RepliesCount
-                        </div>
-                    </td>
-                    <td>
-                        <div class="postDate"> @newEvent.EventCity</div>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+                <td>
+                    <div class="forumPostCount">
+                        Replies: @newEvent.RepliesCount
+                    </div>
+                </td>
+                <td>
+                    <div class="postDate"> @newEvent.EventCity, @newEvent.EventPlace</div>
+                </td>
+                <td>
+                    <div class="postDate"> @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")</div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

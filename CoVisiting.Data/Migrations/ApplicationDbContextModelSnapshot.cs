@@ -113,6 +113,8 @@ namespace CoVisiting.Data.Migrations
 
                     b.Property<string>("EventCity");
 
+                    b.Property<string>("EventPlace");
+
                     b.Property<int>("Rating");
 
                     b.Property<DateTime>("StartDateTime");

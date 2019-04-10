@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoVisiting.Data;
 using CoVisiting.Data.Interfaces;
 using CoVisiting.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoVisiting.Service
 {
@@ -19,7 +21,13 @@ namespace CoVisiting.Service
 
         public Event GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Events.Where(newEvent => newEvent.Id == id)
+                .Include(newEvent => newEvent.User)
+                .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.User)
+                .Include(newEvent => newEvent.Category)
+                .Include(newEvent => newEvent.BeforeEvent)
+                .Include(newEvent => newEvent.AfterEvent)
+                .First();
         }
 
         public IEnumerable<Event> GetAll()

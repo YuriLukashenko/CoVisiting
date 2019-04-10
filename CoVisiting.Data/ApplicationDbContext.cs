@@ -15,5 +15,6 @@ namespace CoVisiting.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventReply> EventReplies { get; set; }
+        public DbSet<Moving> Moving { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace CoVisiting.Models.Event
         public int AuthorRating { get; set; }
         public string AuthorId { get; set; }
         public string EventCity { get; set; }
+        public string EventPlace { get; set; }
         public DateTime StartDateTime { get; set; }
 
         public CategoryListingModel Category { get; set; }

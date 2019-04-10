@@ -55,6 +55,7 @@ namespace CoVisiting.Controllers
                 AuthorName = newEvent.User.UserName,
                 Title = newEvent.Title,
                 EventCity = newEvent.EventCity,
+                EventPlace = newEvent.EventPlace,
                 StartDateTime = newEvent.StartDateTime,
                 RepliesCount = newEvent.Replies.Count(),
                 Category = BuildCategoryListing(newEvent)
