@@ -32,7 +32,12 @@ namespace CoVisiting.Service
 
         public IEnumerable<Event> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Events
+                .Include(post => post.User)
+                .Include(post => post.Replies).ThenInclude(reply => reply.User)
+                .Include(post => post.Category)
+                .Include(newEvent => newEvent.BeforeEvent)
+                .Include(newEvent => newEvent.AfterEvent);
         }
 
         public Task Add(Event post)
@@ -57,7 +62,7 @@ namespace CoVisiting.Service
 
         public IEnumerable<Event> GetLatestEvents(int n)
         {
-            throw new NotImplementedException();
+            return GetAll().OrderByDescending(newEvent => newEvent.Created).Take(n);
         }
 
         public IEnumerable<Event> GetFilteredEvents(Category category, string searchQuery)

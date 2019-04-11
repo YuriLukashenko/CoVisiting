@@ -45,7 +45,7 @@ namespace CoVisiting.Controllers
             //var events = new List<Event>();
 
             //events = _eventService.GetFilteredEvents(category, searchQuery).ToList();
-            var events = category.Events;
+            IEnumerable<Event> events = category.Events;
 
             var eventsListings = events.Select(newEvent => new EventListingModel
             {
@@ -56,6 +56,7 @@ namespace CoVisiting.Controllers
                 Title = newEvent.Title,
                 EventCity = newEvent.EventCity,
                 EventPlace = newEvent.EventPlace,
+                EventRating = newEvent.EventRating,
                 StartDateTime = newEvent.StartDateTime,
                 RepliesCount = newEvent.Replies.Count(),
                 Category = BuildCategoryListing(newEvent)

@@ -1,8 +1,102 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 50px 0 20px 0;
+    background-color: #f5fffa;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
+.header {
+    background-color: #EEF1F8;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.categoryLogo {
+    margin-left: 15px; 
+    height: 40px;
+    width: 40px;
+    background-size: 100%;
+}
+
+.navLogo {
+    background-image: url("/images/logo.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-right: 16px;
+    width: 150px;
+    margin-right: 12px;
+}
+
+.frontPageSplash {
+    background-image: url("/images/bg-01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.frontPageLearn {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 12px 0 0 32px;
+    height: 360px;
+}
+
+.sectionDescription {
+    color: #EEE;
+}
+
+.frontPageHeading {
+    font-size: 3.2em;
+    margin: 16px 0;
+    color: #00AFBC;
+}
+
+.frontPageSubHeading {
+    font-size: 2em;
+    color: #00AFBC;
+}
+
+.fontPageTopContainer {
+    padding: 40px 80px 42px 40px;
+    border: 1px solid #999;
+    background-color: #2569D5;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+.homeSearch {
+    width: 100%;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 8px;
+    border: 0px;
+    height: 2.3em;
+    font-size: 2.1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    transition: ease-in 0.2s;
+    color: #3C3850;
+    
+}
+
+::-webkit-input-placeholder {
+    color: rgba(12, 56, 81, 0.8);
+}
+
+    .homeSearch:focus {
+        border: none !important;
+        outline: none !important;
+        transition: ease-in 0.2s;
+        color: #3C3850;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 5px 4px -6px #000;
+    }
+
+.eventListingTitle {
+
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -33,3 +127,4 @@
         display: none;
     }
 }
+

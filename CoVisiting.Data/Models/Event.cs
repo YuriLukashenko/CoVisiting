@@ -10,11 +10,11 @@ namespace CoVisiting.Data.Models
         public string Title { get; set; }
         public string EventCity { get; set; }
         public string EventPlace { get; set; }
+        public int EventRating { get; set; }
         public DateTime StartDateTime { get; set; }
 
         public DateTime Created { get; set; }
         public string Content { get; set; }
-        public int Rating { get; set; }
 
         public Moving BeforeEvent { get; set; }
         public Moving AfterEvent { get; set; }

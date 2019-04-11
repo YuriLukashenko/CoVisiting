@@ -12,9 +12,10 @@ using System;
 namespace CoVisiting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190411093044_add EventRating")]
+    partial class addEventRating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,6 +117,8 @@ namespace CoVisiting.Data.Migrations
                     b.Property<string>("EventPlace");
 
                     b.Property<int>("EventRating");
+
+                    b.Property<int>("Rating");
 
                     b.Property<DateTime>("StartDateTime");
 
