@@ -73,7 +73,12 @@ namespace CoVisiting.Service
 
         public IEnumerable<Event> GetFilteredEvents(string searchQuery)
         {
-            throw new NotImplementedException();
+            return GetAll()
+                .Where(newEvent
+                => newEvent.Title.Contains(searchQuery)
+                || newEvent.Content.Contains(searchQuery)
+                || newEvent.EventCity.Contains(searchQuery)
+                || newEvent.EventPlace.Contains(searchQuery));
         }
     }
 }

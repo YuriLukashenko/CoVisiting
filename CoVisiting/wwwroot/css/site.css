@@ -14,9 +14,9 @@
 }
 
 .categoryLogo {
-    margin-left: 15px; 
-    height: 40px;
-    width: 40px;
+    background-color: rgba(255, 255, 255, 1);
+    height: 90px;
+    width: 35%;
     background-size: 100%;
 }
 
@@ -85,18 +85,110 @@
     color: rgba(12, 56, 81, 0.8);
 }
 
-    .homeSearch:focus {
-        border: none !important;
-        outline: none !important;
-        transition: ease-in 0.2s;
-        color: #3C3850;
-        background-color: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 5px 4px -6px #000;
-    }
+.homeSearch:focus {
+    border: none !important;
+    outline: none !important;
+    transition: ease-in 0.2s;
+    color: #3C3850;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 4px -6px #000;
+}
+
+.frontPageContent {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 16px;
+}
+
+#latestsEvents {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 4px 0 16px 0;
+    
+}
+
+#blockEvent {
+    transition: ease-in 0.3s;
+    border-width: thin;
+    border-color: #000000;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-style: solid;
+    margin: 10px;
+    padding: 10px
+}
+
+#blockEvent:hover {
+    transition: ease-in 0.3s;
+    background-color: rgba(0, 175, 188, 0.5);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.eventHeader {
+    background-color: #3C3851;
+    margin: 0px;
+    display: flex;
+}
 
 .eventListingTitle {
-
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 10px;
 }
+
+.text-black {
+    color: #000;
+}
+
+.EventCityPlace {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
+    font-size: 1.3em;
+    margin-top: 5px;
+}
+
+.EventStart {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.AuthorRatingClass {
+    border: 1px solid transparent;
+    color: #f5fffa;
+    background-color: green;
+    margin-left: 16px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.likeReply {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 19px; 
+}
+
+.likeLogo {
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    background-image: url("/images/heart-off.png");
+}
+
+.replyLogo {
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    background-image: url("/images/messages.png");
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

@@ -1,21 +1,10 @@
-﻿@model CoVisiting.Models.Home.HomeIndexModel
+﻿@model CoVisiting.Models.Search.SearchResultModel
 
-<div class="container body-content">
-    <div class="row frontPageSplash">
-        <div class="col-md-6 frontPageLearn">
-            <div class="frontPageHeading">Подорожуйте! Спілкуйтесь! Діліться враженнями!</div>
-            <p class="frontPageSubHeading"> Знаходьте друзів і подорожуйте на різноманітні події разом</p>
-            <div>
-                <form asp-controller="Search" asp-action="Search" method="post">
-                    <input asp-for="SearchQuery" type="text" class="homeSearch" placeholder="Знайти подію..."/>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-6"></div>
-    </div>
-    <div class="row frontPageContent">
-        <h3 id="latestsEvents"> Найближчі події </h3>
-        @foreach (var newEvent in Model.LatestEvents)
+<div class="row frontPageContent">
+    @if (!Model.IsEmptySearchResults)
+    {
+        <h3 id="latestsEvents"> Знайдені події </h3>
+        @foreach (var newEvent in Model.Events)
         {
             <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
                 <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
@@ -50,6 +39,14 @@
                 </div>
             </a>
         }
-
-    </div>
+    }
+    else
+    {
+        <div class="noPosts">
+            <i class="material-icons md-72">question_answer</i>
+            <h3>
+                Немає результатів по запиту "@Model.SearchQuery" <br />
+            </h3>
+        </div>
+    }
 </div>
