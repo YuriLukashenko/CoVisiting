@@ -40,9 +40,10 @@ namespace CoVisiting.Service
                 .Include(newEvent => newEvent.AfterEvent);
         }
 
-        public Task Add(Event post)
+        public async Task Add(Event newEvent)
         {
-            throw new NotImplementedException();
+            _context.Add(newEvent);
+            await _context.SaveChangesAsync();
         }
 
         public Task Delete(int id)
