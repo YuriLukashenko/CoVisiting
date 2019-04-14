@@ -1,22 +1,22 @@
 ﻿@model CoVisiting.Models.Event.EventIndexModel
 
 <div class="container body-content">
-    <div class="row postHeader">
-        <div class="postHeading">
-            <span class="postIndexTitle">
+    <div class="row eventHeader">
+        <div class="eventHeading">
+            <span class="eventIndexTitle">
                 @Model.Title, @Model.EventCity, @Model.EventPlace, @Model.StartDateTime.ToString("dd/MM/yyyy HH:mm");
             </span>
-            @*<span id="headingBtn">
-                <a asp-controller="Forum" asp-action="Topic" asp-route-id=@Model. class="btn btn-back">
-                    Back to @Model.ForumName
+            <span id="headingBtn">
+                <a asp-controller="Category" asp-action="Topic" asp-route-id=@Model.CategoryId class="btn btn-back">
+                    Back to @Model.CategoryName
                 </a>
-            </span>*@
+            </span>
         </div>
     </div>
 
-    <div class="row" id="postIndexContent">
-        <div class="col-md-3 postAuthorContainer">
-            <div class="postAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
+    <div class="row" id="eventIndexContent">
+        <div class="col-md-3 eventAuthorContainer">
+            <div class="eventAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
             <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
                 @Model.AuthorName
             </a>
@@ -98,7 +98,7 @@
     {
         <div class="noPosts">
             <h3>
-                There are no replies to this post. <br />
+                Тут ще немає коментарів ... <br />
             </h3>
         </div>
     }

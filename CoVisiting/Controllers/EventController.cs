@@ -45,6 +45,8 @@ namespace CoVisiting.Controllers
                 AuthorRating = newEvent.User.Rating,
                 Created = newEvent.Created,
                 Content = newEvent.Content,
+                CategoryId = newEvent.Category.Id,
+                CategoryName = newEvent.Category.Title,
                 BeforeEvent = newEvent.BeforeEvent,
                 AfterEvent = newEvent.AfterEvent,
                 Replies = replies
