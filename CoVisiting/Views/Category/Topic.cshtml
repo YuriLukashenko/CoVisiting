@@ -1,66 +1,102 @@
 ﻿@model CoVisiting.Models.Category.CategoryTopicModel
 
-@if (Context.User.Identity.IsAuthenticated)
-{
-    <span id="headingBtn">
-        <a asp-controller="Event"
-           asp-action="Create"
-           asp-route-id="@Model.Category.Id" class="btn btn-newPost">Create Post</a>
-    </span>
-}
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">
+            <span> @Model.Category.Name </span>
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <span id="headingBtn">
+                    <a asp-controller="Event"
+                       asp-action="Create"
+                       asp-route-id="@Model.Category.Id" class="btn btn-newEvent">Створити подію</a>
+                </span>
+            }
+            <form asp-controller="Category" asp-action="Search" method="post">
+                <div class="searchForm">
+                    <input asp-for="SearchQuery" type="text" placeholder="Пошук..." class="searchBar" onfocus="clearThis(this)" />
+                    <button type="submit" class="btn btn-categorySearch">
+                    </button>
+                </div>
+                <input asp-for="Category.Id" name="id" type="hidden" />
+            </form>
+        </div>
+        <div class="sectionDescription">
+            <div class="categoryLogoInCategory" style="background-image: url(@Model.Category.ImageUrl)"></div>
+            <p class="ssp">Ласкаво просимо до категорії "@Model.Category.Name". Будь-ласка, створюйте події у межах теми.</p>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <p>
+                    <span>
+                        Вам необхідно бути
+                        <a asp-controller="Account" asp-action="Register">
+                            зареєстрованим учасником
+                        </a>
+                        для створення подій.
+                    </span>
+                </p>
+            }
+        </div>
+    </div>
 
-@if (Model.Events.Any())
-{
-    <table class="table table-hover table-bordered" id="forumIndexTable">
-        <tbody>
+    @if (Model.Events.Any())
+    {
+        <div class="row frontPageContent">
             @foreach (var newEvent in Model.Events)
             {
-            <tr>
-                <td>
-                    <div class="postData">
-                        <div class="postTitle">
-                            <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id">
-                                @newEvent.Title
-                            </a>
+                <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
+                    <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
+                        <div class="row eventHeader">
+                            <div class="eventListingTitleWithoutImage">
+                                <label>
+                                    @newEvent.Title
+                                </label>
+                            </div>
                         </div>
-                        <div class="forumSubTitle">
-                            <div>
-                                <span class="postAuthor">
-                                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
-                                        @newEvent.AuthorName
-                                    </a>
-                                </span>
-                                (@newEvent.AuthorRating)
+                        <div class="EventCityPlace">
+                            @newEvent.EventCity, @newEvent.EventPlace
+                        </div>
+                        <div class="EventStart">
+                            @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                        <div>
+                            #@newEvent.AuthorName
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 AuthorRatingClass">
+                                +@newEvent.AuthorRating
+                            </div>
+                            <div class="likeReply">
+                                <div class="likeLogo"> </div>
+                                <div class=""> @newEvent.EventRating </div>
+                                <div class="replyLogo"> </div>
+                                <div class=""> @newEvent.RepliesCount.ToString() </div>
                             </div>
                         </div>
                     </div>
-                </td>
-                <td>
-                    <div class="forumPostCount">
-                        Replies: @newEvent.RepliesCount
-                    </div>
-                </td>
-                <td>
-                    <div class="postDate"> @newEvent.EventCity, @newEvent.EventPlace</div>
-                </td>
-                <td>
-                    <div class="postDate"> @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")</div>
-                </td>
-            </tr>
+                </a>
             }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="noPosts">
-        <h3>
-            Здається, у цій категорії ще немає подій...
-            Чому б не 
-            <a asp-controller="Post" asp-action="Create" asp-route-id="@Model.Category.Id">
-                <span>створити</span>
-            </a>
-            якусь нову подію?)
-        </h3>
-    </div>
+        </div>
+    }
+    else
+    {
+        <div class="noPosts">
+            <h3>
+                Здається, у цій категорії ще немає подій...
+                Чому б не
+                <a asp-controller="Event" asp-action="Create" asp-route-id="@Model.Category.Id">
+                    <span>створити</span>
+                </a>
+                якусь нову подію?)
+            </h3>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script>
+        function clearThis(target) {
+            target.value = "";
+        }
+    </script>
 }

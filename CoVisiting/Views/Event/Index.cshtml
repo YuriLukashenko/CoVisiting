@@ -1,59 +1,74 @@
 ﻿@model CoVisiting.Models.Event.EventIndexModel
 
 <div class="container body-content">
-    <div class="row eventHeader">
+    <div class="row eventNewNameHeader">
         <div class="eventHeading">
             <span class="eventIndexTitle">
-                @Model.Title, @Model.EventCity, @Model.EventPlace, @Model.StartDateTime.ToString("dd/MM/yyyy HH:mm");
+                @Model.Title 
             </span>
             <span id="headingBtn">
                 <a asp-controller="Category" asp-action="Topic" asp-route-id=@Model.CategoryId class="btn btn-back">
-                    Back to @Model.CategoryName
+                    Назад до "@Model.CategoryName"
                 </a>
+            </span>
+        </div>
+    </div>
+    
+    
+    <div class="row eventNewPlaceHeader">
+        <div class="eventHeading">
+            <span class="eventIndexPlace">
+                @Model.EventCity, @Model.EventPlace, @Model.StartDateTime.ToString("dd/MM/yyyy HH:mm")
             </span>
         </div>
     </div>
 
     <div class="row" id="eventIndexContent">
-        <div class="col-md-3 eventAuthorContainer">
-            <div class="eventAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
-            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
-                @Model.AuthorName
-            </a>
-            <span class="postData"> @Model.Created</span>
+        <div class="col-md-2 eventAuthorContainer">
+            <div class="col-md-12 eventAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
+            <div class="col-md-12 eventAuthorName">
+                <a  asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                    @Model.AuthorName
+                </a>
+            </div>
+            <span class="col-md-12 eventData"> @Model.Created</span>
             @*@if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Admin</span>
             }*@
         </div>
-        <div class="col-md-9" postContentContainer>
-            <div class="postContent">
+        <div class="col-md-10 eventContentContainer">
+            <div class="col-md-7 eventContentText">
                 @Html.Raw(Model.Content)
             </div>
-        </div>
-        <div class="col-md-9">
-            
-            <table class="table table-hover">
-                <tbody>
-                    <tr>
-                        <td> Відправлення </td>
-                        <td> Повернення </td>
-                    </tr>
-                <tr>
-                    <td> @Model.BeforeEvent.TransportType.ToString()</td>
-                    <td> @Model.AfterEvent.TransportType.ToString()</td>
-                </tr>
-                    <tr>
-                        <td> @Model.BeforeEvent.DepartureCity - @Model.BeforeEvent.ArrivalCity</td>
-                        <td> @Model.AfterEvent.DepartureCity - @Model.AfterEvent.ArrivalCity</td>
-                    </tr>
-                    <tr>
-                        <td> @Model.BeforeEvent.DepartureTime.ToString("dd/MM/yyyy HH:mm") -  @Model.BeforeEvent.ArrivalTime.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td> @Model.AfterEvent.DepartureTime.ToString("dd/MM/yyyy HH:mm") - @Model.AfterEvent.ArrivalTime.ToString("dd/MM/yyyy HH:mm")</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="col-md-5">
+
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td> Відправлення </td>
+                            <td> Повернення </td>
+                        </tr>
+                        <tr>
+                            <td> @Model.BeforeEvent.TransportType.ToString()</td>
+                            <td> @Model.AfterEvent.TransportType.ToString()</td>
+                        </tr>
+                        <tr>
+                            <td> @Model.BeforeEvent.DepartureCity - @Model.BeforeEvent.ArrivalCity</td>
+                            <td> @Model.AfterEvent.DepartureCity - @Model.AfterEvent.ArrivalCity</td>
+                        </tr>
+                        <tr>
+                            <td> =&gt; @Model.BeforeEvent.DepartureTime.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td> =&gt; @Model.AfterEvent.DepartureTime.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                        <tr>
+                            <td> &lt;= @Model.BeforeEvent.ArrivalTime.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td> &lt;= @Model.AfterEvent.ArrivalTime.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> 
     </div>
 
     <div class="row" id="replyDivider"></div>
@@ -63,7 +78,7 @@
         <div class="row">
             <span>
                 <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">
-                    Post Reply
+                    Додати коментар
                 </a>
             </span>
         </div>
@@ -96,7 +111,7 @@
     }
     else
     {
-        <div class="noPosts">
+        <div class="noEvents">
             <h3>
                 Тут ще немає коментарів ... <br />
             </h3>

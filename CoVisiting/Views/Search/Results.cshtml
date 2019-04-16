@@ -1,10 +1,20 @@
 ﻿@model CoVisiting.Models.Search.SearchResultModel
 
 <div class="row frontPageContent">
+    <div class="row sectionHeaderResults">
+        <div class="sectionHeading">
+            <span> Знайдені події за запитом: @Model.SearchQuery</span>
+            <form asp-controller="Search" asp-action="Search" method="post">
+                <div class="searchForm">
+                    <input asp-for="SearchQuery" type="text" placeholder="Пошук..." class="searchBar" onfocus="clearThis(this)" />
+                </div>
+            </form>
+        </div>
+    </div>
+
     @if (!Model.IsEmptySearchResults)
     {
-        <h3 id="latestsEvents"> Знайдені події </h3>
-        @foreach (var newEvent in Model.Events)
+        foreach (var newEvent in Model.Events)
         {
             <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
                 <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
@@ -50,3 +60,11 @@
         </div>
     }
 </div>
+
+@section Scripts{
+    <script>
+        function clearThis(target) {
+            target.value = "";
+        }
+    </script>
+}

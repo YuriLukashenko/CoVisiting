@@ -10,5 +10,6 @@ namespace CoVisiting.Models.Category
     {
         public CategoryListingModel Category { get; set; }
         public IEnumerable<EventListingModel> Events { get; set; }
+        public string SearchQuery { get; set; }
     }
 }

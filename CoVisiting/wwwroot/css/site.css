@@ -25,7 +25,6 @@
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    padding-right: 16px;
     width: 150px;
     margin-right: 12px;
 }
@@ -97,14 +96,14 @@
 .frontPageContent {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
 }
 
 #latestsEvents {
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
-    margin: 4px 0 16px 0;
-    
+    margin: 4px 0 16px 0;  
 }
 
 #blockEvent {
@@ -189,6 +188,93 @@
     background-image: url("/images/messages.png");
 }
 
+
+/* Event Page */
+.eventTitle {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.eventSubTitle {
+    color: #888;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8em;
+}
+
+.eventData {
+    display: inline-block;
+    padding: 0px;
+}
+
+.eventDate {
+    color: #888;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8em;
+}
+
+.eventLogo {
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+}
+
+.eventAuthorImage {
+    height: 160px;
+    width: 160px;
+    background-size: 100%;
+}
+
+.eventAuthorContainer {
+    padding: 12px;
+    color: #444;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.eventAuthorName {
+    padding: 0px;
+}
+
+.eventContentContainer {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #222;
+    padding: 22px;
+    padding-left: 7px; 
+    border-left: 1px solid #ddd;
+}
+
+.eventContentText {
+    font-size: 1.2em;
+}
+
+
+.eventAuthorRating {
+    font-size: 0.9em;
+    color: #159;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#eventIndexContent {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+/*#headingBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}*/
+
+.eventHeading {
+    color: white;
+    font-size: 1.1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 16px 0 16px 10px;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -220,3 +306,144 @@
     }
 }
 
+
+.eventNewNameHeader {
+    background-color: #3C3851;
+    padding: 8px 0px 12px 12px;
+}
+
+.eventNewPlaceHeader {
+    background-color: #F39C12;
+    padding-left: 12px;
+}
+
+.eventIndexTitle {
+    font-size: 1.9em;
+}
+
+.eventIndexPlace {
+    font-size: 1.4em;
+}
+
+#headingBtn {
+    float: right;
+    margin-right: 20px;
+}
+
+/*specific buttons*/
+.btn-back {
+    background-color: #555;
+    color: #fff !important;
+    transition: ease-in 0.2s;
+    border-radius: 0px !important;
+}
+
+.btn-back:hover {
+    transition: ease-in 0.2s;
+    background-color: rgba(0, 175, 188, 0.5) !important;
+}
+
+.btn-newReply {
+    background-color: #CB4335 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newReply:hover {
+        transition: ease-in 0.1s;
+        background-color: #3C3851 !important;
+    }
+
+.btn-newEvent {
+    background-color: #C62828 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newEvent:hover {
+        transition: ease-in 0.1s;
+        background-color: #E53935 !important;
+        color: #fff !important;
+    }
+
+.btn-categorySearch {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
+.noEvents {
+    text-align: center;
+    padding-top: 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.sectionHeader {
+    background-color: #3C3851;
+    padding: 8px 0 24px 24px;
+}
+
+.sectionHeaderResults{
+    background-color: #3C3851;
+    padding: 8px 0 0px 24px;
+    margin: -20px -16px 0px -16px; 
+}
+
+.sectionHeading {
+    color: white;
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 16px 0 16px 0;
+    border-bottom: 1px solid #335;
+    margin-bottom: 12px;
+}
+
+/* Forum Topic Page*/
+.searchBar {
+    color: #000000;
+    padding: 3px 5px 2px 12px;
+    margin-top: 4px;
+    background-color: #ddd;
+    width: 10%;
+    transition: ease .3s;
+    border: none;
+}
+
+.searchBar:focus{
+    color: black;
+    width: 60%;
+    background-color: #fff;
+}
+
+.searchForm {
+
+}
+
+.categoryLogoInCategory {
+    border-radius: 3px;
+    float: left;
+    margin-right: 20px;
+    height: 80px;
+    width: 80px;
+    background-color: #fff;
+    border: 1px solid #555;
+    background-size: 100%
+}
+
+.eventListingTitleWithoutImage {
+    width: 100%;
+    display: flex;
+    font-size: 1.3em;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 10px;
+}
+
+.ssp{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+}
