@@ -68,7 +68,13 @@ namespace CoVisiting.Service
 
         public IEnumerable<Event> GetFilteredEvents(Category category, string searchQuery)
         {
-            throw new NotImplementedException();
+            return String.IsNullOrEmpty(searchQuery)
+                ? category.Events
+                : category.Events.Where(newEvent 
+                    => newEvent.Title.Contains(searchQuery)
+                       || newEvent.Content.Contains(searchQuery)
+                       || newEvent.EventCity.Contains(searchQuery)
+                       || newEvent.EventPlace.Contains(searchQuery));
         }
 
         public IEnumerable<Event> GetFilteredEvents(string searchQuery)

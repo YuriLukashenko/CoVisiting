@@ -83,11 +83,29 @@
         <div class="noPosts">
             <h3>
                 Здається, у цій категорії ще немає подій...
-                Чому б не
-                <a asp-controller="Event" asp-action="Create" asp-route-id="@Model.Category.Id">
-                    <span>створити</span>
-                </a>
-                якусь нову подію?)
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>
+                        Чому б не
+                        <a asp-controller="Event" asp-action="Create" asp-route-id="@Model.Category.Id">
+                            <span>створити</span>
+                        </a>
+                        якусь нову подію?)
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        <a asp-controller="Account" asp-action="Register">
+                            Зареєструйтесь
+                        </a>
+                        або
+                        <a asp-controller="Account" asp-action="Login">
+                            Авторизуйтесь
+                        </a>
+                        для створення нових подій.
+                    </p>
+                }
             </h3>
         </div>
     }

@@ -42,10 +42,9 @@ namespace CoVisiting.Controllers
         public IActionResult Topic(int id, string searchQuery)
         {
             var category = _categoryService.GetById(id);
-            //var events = new List<Event>();
+            var events = new List<Event>();
 
-            //events = _eventService.GetFilteredEvents(category, searchQuery).ToList();
-            IEnumerable<Event> events = category.Events;
+            events = _eventService.GetFilteredEvents(category, searchQuery).ToList();
 
             var eventsListings = events.Select(newEvent => new EventListingModel
             {
@@ -69,6 +68,12 @@ namespace CoVisiting.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Search(int id, string searchQuery)
+        {
+            return RedirectToAction("Topic", new { id, searchQuery });
         }
 
         private CategoryListingModel BuildCategoryListing(Event newEvent)

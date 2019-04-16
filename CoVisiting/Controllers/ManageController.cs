@@ -69,7 +69,6 @@ namespace CoVisiting.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(IndexViewModel model)
         {
             if (!ModelState.IsValid)
