@@ -447,3 +447,19 @@
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.2em;
 }
+
+/*user profile*/
+.userProfileHeader {
+    background-color: #3C3851;
+    padding: 24px 0 24px 12px;
+}
+
+.userProfileHeading {
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+#userProfileContent {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}

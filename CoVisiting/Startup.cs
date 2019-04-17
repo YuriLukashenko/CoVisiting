@@ -40,7 +40,8 @@ namespace CoVisiting
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<ICategory, CategoryService>();
             services.AddScoped<IEvent, EventService>();
-
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
+            services.AddScoped<IUpload, UploadSevice>();
             services.AddMvc();
         }
 
