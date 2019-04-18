@@ -8,6 +8,44 @@
     </div>
     
     <div class="row" id="userProfileContent">
-
+        <div class="col-lg-3">
+            <div class="col-lg-12 userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"> </div>
+            <div class="col-lg-12 userProfileName">
+                @Model.UserName
+            </div>
+        </div>
+        <div class="col-lg-6 userProfileContainerInfo">
+            <div class="row">
+                <div class="col-lg-3">E-мейл:</div>
+                <div class="col-lg-6">@Model.Email</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">Місто:</div>
+                <div class="col-lg-6">@Model.City</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">Користувач з:</div>
+                <div class="col-lg-6">@Model.MemberSince.ToString("dd.MM.yyyy")</div>
+            </div>
+            <hr/>
+            <div class="col-lg-3">
+                <div class="row userProfileRating">
+                    @Model.UserRating
+                </div>
+                <div class="row userProfileRatingLabel">
+                    рейтинг
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="row userProfileCountEvents">
+                    @Model.CountEvents
+                </div>
+                <div class="row userProfileCountEventsLabel">
+                    подій
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+        </div>
     </div>
 </div>

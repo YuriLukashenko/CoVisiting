@@ -35,20 +35,35 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toogle" data-toogle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Налаштування <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header"> Profile </li>
-                                <li><a asp-controller="Profile" asp-action="Detail">My Profile</a></li>
+                            <button class="btn btn-info dropdown-toggle marginfix" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Налаштування
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+                        @*<div class="dropdown">
+                            <a href="#" class="dropdown-toogle" id="dropdownMenuButton" data-toogle="dropdown" type="button" aria-haspopup="true" aria-expanded="False"> Налаштування <span class="caret"></span></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" role="separator"></a>
+                                <a class="dropdown-item" href="#"> Profile </a>
+                                <a class="dropdown-item" href="#">
+                                    <a asp-controller="Profile" asp-action="Detail">
+                                        My Profile
+                                    </a>
+                                </a>
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header"> Admin </li>
-                                    @*<li> <a asp-controller="Forum" asp-action="Create"> Create Forum</a></li>
-                                        <li> <a asp-controller="Profile" asp-action="Index"> View Users</a></li>*@
+                                    <a role="separator dropdown-item" class="divider"></a>
+                                    <a class="dropdown-header dropdown-item"> Admin </a>
+                                    <li> <a asp-controller="Forum" asp-action="Create"> Create Forum</a></li>
+                                        <li> <a asp-controller="Profile" asp-action="Index"> View Users</a></li>
                                 }
-                            </ul>
-                        </li>
+                            </div>
+                        </div>*@
                     }
                 </ul>
                 @if (SignInManager.IsSignedIn(User))

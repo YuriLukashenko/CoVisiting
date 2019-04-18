@@ -418,10 +418,6 @@
     background-color: #fff;
 }
 
-.searchForm {
-
-}
-
 .categoryLogoInCategory {
     border-radius: 3px;
     float: left;
@@ -457,9 +453,68 @@
 .userProfileHeading {
     font-size: 1.5em;
     color: #ffffff;
+    padding-left: 10px;
 }
 
 #userProfileContent {
     background-color: white;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.userProfileImage {
+    margin: 10px 5px 10px 5px;
+    padding: 0;
+    height: 250px;
+    width: 250px;
+    background-size: 100%;
+}
+
+.userProfileName {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5em;
+    margin: 0 5px 10px 5px;
+    padding: 0;
+}
+
+.userProfileContainerInfo {
+    margin-top: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.3em;
+}
+
+.userProfileRating {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Comic Sans MS';
+    font-size: 2em;
+    margin-right: -5px;
+}
+
+.userProfileRatingLabel {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-right: -5px;
+}
+
+.marginfix {
+    margin-top: 8px;
+}
+
+
+.userProfileCountEvents {
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Comic Sans MS';
+    font-size: 2em;
+    margin-left: -5px; 
+}
+
+.userProfileCountEventsLabel {
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-left: -5px;
 }

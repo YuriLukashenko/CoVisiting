@@ -13,5 +13,6 @@ namespace CoVisiting.Data.Models
         public string ProfileImageUrl { get; set; }
         public DateTime MemberSince { get; set; }
         public bool isActive { get; set; }
+        public string City { get; set; }
     }
 }

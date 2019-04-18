@@ -31,7 +31,7 @@
                     @Model.AuthorName
                 </a>
             </div>
-            <span class="col-md-12 eventData"> @Model.Created</span>
+            <span class="col-md-12 eventData"> @Model.Created.ToString("dd.MM.yyyy")</span>
             @*@if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Admin</span>
