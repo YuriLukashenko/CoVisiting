@@ -498,7 +498,7 @@
     margin-right: -5px;
 }
 
-.marginfix {
+.marginfix8 {
     margin-top: 8px;
 }
 
@@ -517,4 +517,20 @@
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.2em;
     margin-left: -5px;
+}
+
+/*profile listings*/
+.ProfileListingsHeader {
+    background-color: #3C3851;
+    padding: 24px 0 24px 12px;
+}
+
+.ProfileListingsHeading {
+    font-size: 1.5em;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+.globalMarginFix-30 {
+    margin-left: -30px; 
 }

@@ -41,5 +41,32 @@ namespace CoVisiting.Controllers
             };
             return View(model);
         }
+
+        public IActionResult Listing()
+        {
+            var users = _userService.GetAll();
+            var profileList = BuildProfileListing(users);
+
+            var model = new ProfileListingModel()
+            {
+                ProfileList = profileList
+            };
+            return View(model);
+        }
+
+        private IEnumerable<ProfileModel> BuildProfileListing(IEnumerable<ApplicationUser> users)
+        {
+            return users.Select(user => new ProfileModel()
+            {
+                userId = user.Id,
+                ProfileImageUrl = user.ProfileImageUrl,
+                UserName = user.UserName,
+                Email = user.Email,
+                City = user.City,
+                MemberSince = user.MemberSince,
+                UserRating = user.Rating.ToString(),
+                CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
+            });
+        }
     }
 }

@@ -34,16 +34,30 @@
                     <li><a asp-controller="Category" asp-action="Index">Категорії</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li class="dropdown">
-                            <button class="btn btn-info dropdown-toggle marginfix" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Налаштування
+                        <div class="btn-group">
+                            <button type="button" data-toggle="dropdown" class="btn btn-info marginfix8">
+                                Налаштування <span class="caret"></span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
+                            <ul class="dropdown-menu">
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a asp-controller="Profile" asp-action="Detail" asp-route-id=@UserManager.GetUserId(User)>
+                                        <strong>Профіль</strong>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Profile" asp-action="Listing">
+                                        Користувачі
+                                    </a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Створити категорію</a></li>
+                                    <li><a href="#">Керування коментарями</a></li>
+                                }
+                            </ul>
+                        </div>
 
                         @*<div class="dropdown">
                             <a href="#" class="dropdown-toogle" id="dropdownMenuButton" data-toogle="dropdown" type="button" aria-haspopup="true" aria-expanded="False"> Налаштування <span class="caret"></span></a>

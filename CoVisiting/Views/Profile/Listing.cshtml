@@ -1,0 +1,34 @@
+﻿@model CoVisiting.Models.ApplicationUser.ProfileListingModel
+
+<div class="container body-content">
+    <div class="row ProfileListingsHeader globalMarginFix-30">
+        <div class="ProfileListingsHeading">
+            Список користувачів
+        </div>
+    </div>
+</div>
+
+<table class="table table-hover" id="categoryIndexTable">
+    <tbody>
+    @foreach (var user in Model.ProfileList)
+        {
+        <tr>
+            <td class="col-lg-3">
+                @user.ProfileImageUrl
+            </td>
+            <td class="col-lg-3">
+                @user.UserName
+            </td>
+            <td class="col-lg-3">
+                @user.City
+            </td>
+            <td class="col-lg-3">
+                @user.UserRating
+            </td>
+            <td class="col-lg-3">
+                @user.CountEvents
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
