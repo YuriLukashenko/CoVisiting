@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="row frontPageContent">
+    <div class="row ContainerShadow paddingFix16">
         <h3 id="latestsEvents"> Найближчі події </h3>
         @foreach (var newEvent in Model.LatestEvents)
         {
@@ -33,7 +33,9 @@
                         @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
                     </div>
                     <div>
-                        @newEvent.AuthorName
+                        <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
+                            @newEvent.AuthorName
+                        </a>
                     </div>
                     <div class="row">
                         <div class="col-lg-2 AuthorRatingClass">

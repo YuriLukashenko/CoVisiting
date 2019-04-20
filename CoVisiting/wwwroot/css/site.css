@@ -93,12 +93,6 @@
     box-shadow: 0 5px 4px -6px #000;
 }
 
-.frontPageContent {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 16px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
-}
-
 #latestsEvents {
     font-size: 1.2em;
     font-weight: bold;
@@ -258,11 +252,6 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-#eventIndexContent {
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
-}
-
 /*#headingBtn {
     display: flex;
     justify-content: flex-end;
@@ -388,8 +377,8 @@
 
 .sectionHeaderResults{
     background-color: #3C3851;
-    padding: 8px 0 0px 24px;
-    margin: -20px -16px 0px -16px; 
+    padding-left: 24px;
+    margin: 0; 
 }
 
 .sectionHeading {
@@ -456,11 +445,6 @@
     padding-left: 10px;
 }
 
-#userProfileContent {
-    background-color: white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
-}
-
 .userProfileImage {
     margin: 10px 5px 10px 5px;
     padding: 0;
@@ -498,11 +482,6 @@
     margin-right: -5px;
 }
 
-.marginfix8 {
-    margin-top: 8px;
-}
-
-
 .userProfileCountEvents {
     display: flex;
     justify-content: flex-start;
@@ -531,6 +510,43 @@
     padding-left: 10px;
 }
 
-.globalMarginFix-30 {
-    margin-left: -30px; 
+.ProfileListingImage {
+    background-color: rgba(255, 255, 255, 1);
+    height: 150px;
+    width: 11%;
+    background-size: 100%;
 }
+
+.ProfileListingContent {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.7em;
+}
+
+
+.ContainerShadow {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+/*MARGIN && PADDING FIXES*/
+.paddingFix16{
+    padding: 16px;
+}
+
+.globalMarginFix_30 {
+    margin-left: -30px;
+}
+
+.marginfix8 {
+    margin-top: 8px;
+}
+
+.paddingFix8 {
+    padding: 8px;
+}
+
+.paddingFixB8 {
+    padding-bottom: 8px;
+}
+
+

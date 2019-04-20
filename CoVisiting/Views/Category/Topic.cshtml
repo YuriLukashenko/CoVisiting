@@ -41,7 +41,7 @@
 
     @if (Model.Events.Any())
     {
-        <div class="row frontPageContent">
+        <div class="row ContainerShadow paddingFix16">
             @foreach (var newEvent in Model.Events)
             {
                 <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">

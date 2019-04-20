@@ -1,6 +1,6 @@
 ﻿@model CoVisiting.Models.Search.SearchResultModel
 
-<div class="row frontPageContent">
+<div class="row ContainerShadow paddingFixB8">
     <div class="row sectionHeaderResults">
         <div class="sectionHeading">
             <span> Знайдені події за запитом: @Model.SearchQuery</span>
@@ -11,53 +11,54 @@
             </form>
         </div>
     </div>
-
-    @if (!Model.IsEmptySearchResults)
-    {
-        foreach (var newEvent in Model.Events)
+    <div class="paddingFix8">
+        @if (!Model.IsEmptySearchResults)
         {
-            <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
-                <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
-                    <div class="row eventHeader">
-                        <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
-                        <div class="eventListingTitle">
-                            <label>
-                                @newEvent.Title
-                            </label>
+            foreach (var newEvent in Model.Events)
+            {
+                <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
+                    <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
+                        <div class="row eventHeader">
+                            <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
+                            <div class="eventListingTitle">
+                                <label>
+                                    @newEvent.Title
+                                </label>
+                            </div>
+                        </div>
+                        <div class="EventCityPlace">
+                            @newEvent.EventCity, @newEvent.EventPlace
+                        </div>
+                        <div class="EventStart">
+                            @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                        <div>
+                            @newEvent.AuthorName
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 AuthorRatingClass">
+                                +@newEvent.AuthorRating
+                            </div>
+                            <div class="likeReply">
+                                <div class="likeLogo"> </div>
+                                <div class=""> @newEvent.EventRating </div>
+                                <div class="replyLogo"> </div>
+                                <div class=""> @newEvent.RepliesCount.ToString() </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="EventCityPlace">
-                        @newEvent.EventCity, @newEvent.EventPlace
-                    </div>
-                    <div class="EventStart">
-                        @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
-                    </div>
-                    <div>
-                        #@newEvent.AuthorName
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2 AuthorRatingClass">
-                            +@newEvent.AuthorRating
-                        </div>
-                        <div class="likeReply">
-                            <div class="likeLogo"> </div>
-                            <div class=""> @newEvent.EventRating </div>
-                            <div class="replyLogo"> </div>
-                            <div class=""> @newEvent.RepliesCount.ToString() </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            }
         }
-    }
-    else
-    {
-        <div class="noEvents">
-            <h3>
-                Немає результатів за запитом "@Model.SearchQuery" <br />
-            </h3>
-        </div>
-    }
+        else
+        {
+            <div class="noEvents">
+                <h3>
+                    Немає результатів за запитом "@Model.SearchQuery" <br />
+                </h3>
+            </div>
+        }
+    </div>
 </div>
 
 @section Scripts{

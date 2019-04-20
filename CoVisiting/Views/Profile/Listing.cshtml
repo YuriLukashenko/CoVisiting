@@ -1,34 +1,44 @@
 ﻿@model CoVisiting.Models.ApplicationUser.ProfileListingModel
 
 <div class="container body-content">
-    <div class="row ProfileListingsHeader globalMarginFix-30">
+    <div class="row ProfileListingsHeader globalMarginFix_30">
         <div class="ProfileListingsHeading">
             Список користувачів
         </div>
     </div>
-</div>
 
-<table class="table table-hover" id="categoryIndexTable">
-    <tbody>
-    @foreach (var user in Model.ProfileList)
-        {
-        <tr>
-            <td class="col-lg-3">
-                @user.ProfileImageUrl
-            </td>
-            <td class="col-lg-3">
-                @user.UserName
-            </td>
-            <td class="col-lg-3">
-                @user.City
-            </td>
-            <td class="col-lg-3">
-                @user.UserRating
-            </td>
-            <td class="col-lg-3">
-                @user.CountEvents
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+    <div class="row globalMarginFix_30 ContainerShadow paddingFix8">
+        <table class="table table-hover" id="categoryIndexTable">
+            <thead>
+                <tr>
+                    <th>Аватарка</th>
+                    <th>Ім'я користувача</th>
+                    <th>Місто</th>
+                    <th>Рейтинг</th>
+                    <th>Кількість подій</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.ProfileList)
+                {
+                    <tr>
+                        <td class="col-lg-3 ProfileListingImage" style="background-image:url(@user.ProfileImageUrl)">                          
+                        </td>
+                        <td class="col-lg-3 ProfileListingContent">
+                            @user.UserName
+                        </td>
+                        <td class="col-lg-3 ProfileListingContent">
+                            @user.City
+                        </td>
+                        <td class="col-lg-1 ProfileListingContent">
+                            @user.UserRating
+                        </td>
+                        <td class="col-lg-1 ProfileListingContent">
+                            @user.CountEvents
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
