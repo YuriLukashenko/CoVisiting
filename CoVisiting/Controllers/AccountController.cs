@@ -25,6 +25,7 @@ namespace CoVisiting.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private const string DefaultImageUrl = "/images/users/default.jpg";
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -219,7 +220,13 @@ namespace CoVisiting.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Name,
+                    Email = model.Email,
+                    City = model.City,
+                    ProfileImageUrl = DefaultImageUrl
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

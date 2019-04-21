@@ -1,4 +1,7 @@
 ﻿@model CoVisiting.Models.ApplicationUser.ProfileModel
+@using CoVisiting.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
 
 <div class="container body-content">
     <div class="row userProfileHeader globalMarginFix_30">
@@ -6,10 +9,21 @@
             Профіль користувача
         </div>
     </div>
-    
+
     <div class="row globalMarginFix_30 ContainerShadow">
         <div class="col-lg-3">
             <div class="col-lg-12 userProfileImage" style="background-image: url(@Model.ProfileImageUrl)"> </div>
+            @if (Model.UserName == User.Identity.Name)
+            {
+                <div class="col-lg-12 marginfixL_10B10">
+                    <form asp-controller="Profile" asp-action="AddFile" asp-route-id="@Model.userId" method="post" enctype="multipart/form-data">
+                        <input type="file" name="uploadedFile" id="file" class="inputfile" /><br>
+                        <label for="file" class="btn btn-info">Вибрати файл</label>
+                        <input type="submit" class="btn btn-success" value="Оновити" />
+                        <input asp-for="userId" type="hidden" />
+                    </form>
+                </div>
+            }
             <div class="col-lg-12 userProfileName">
                 @Model.UserName
             </div>
@@ -27,7 +41,7 @@
                 <div class="col-lg-3">Користувач з:</div>
                 <div class="col-lg-6">@Model.MemberSince.ToString("dd.MM.yyyy")</div>
             </div>
-            <hr/>
+            <hr />
             <div class="col-lg-3">
                 <div class="row userProfileRating">
                     @Model.UserRating

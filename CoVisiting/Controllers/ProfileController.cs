@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CoVisiting.Data;
 using CoVisiting.Data.Interfaces;
 using CoVisiting.Data.Models;
 using CoVisiting.Models.ApplicationUser;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +19,15 @@ namespace CoVisiting.Controllers
         private readonly IApplicationUser _userService;
         private readonly IUpload _uploadService;
         private readonly IEvent _eventService;
+        private readonly IHostingEnvironment _appEnvironment;
 
-        public ProfileController(UserManager<ApplicationUser> userManager, IApplicationUser userService, IUpload uploadService, IEvent eventService)
+        public ProfileController(UserManager<ApplicationUser> userManager, IApplicationUser userService, IUpload uploadService, IEvent eventService, IHostingEnvironment appEnvironment)
         {
             _userManager = userManager;
             _userService = userService;
             _uploadService = uploadService;
             _eventService = eventService;
+            _appEnvironment = appEnvironment;
         }
 
         public IActionResult Detail(string id)
@@ -67,6 +72,22 @@ namespace CoVisiting.Controllers
                 UserRating = user.Rating.ToString(),
                 CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFile(string userId, IFormFile uploadedFile)
+        {
+            if (uploadedFile != null)
+            {
+                string path = "/images/users/" + uploadedFile.FileName;
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+                await _userService.SetProfileImage(userId, path);
+            }
+
+            return RedirectToAction("Detail", "Profile", new { id = userId });
         }
     }
 }

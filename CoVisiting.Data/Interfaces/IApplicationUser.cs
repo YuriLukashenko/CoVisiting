@@ -10,7 +10,7 @@ namespace CoVisiting.Data.Interfaces
     {
         ApplicationUser GetById(string id);
         IEnumerable<ApplicationUser> GetAll();
-        Task SetProfileImage(string id, Uri uri);
+        Task SetProfileImage(string id, string path);
         Task IncrementRating(string id, Type type);
     }
 }
