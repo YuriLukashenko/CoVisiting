@@ -225,6 +225,7 @@ namespace CoVisiting.Controllers
                     UserName = model.Name,
                     Email = model.Email,
                     City = model.City,
+                    MemberSince = DateTime.Now,
                     ProfileImageUrl = DefaultImageUrl
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);

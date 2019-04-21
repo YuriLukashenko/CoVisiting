@@ -451,6 +451,8 @@
     height: 250px;
     width: 250px;
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .userProfileName {
@@ -512,9 +514,11 @@
 
 .ProfileListingImage {
     background-color: rgba(255, 255, 255, 1);
-    height: 150px;
-    width: 11%;
+    height: 200px;
+    width: 14%;
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .ProfileListingContent {

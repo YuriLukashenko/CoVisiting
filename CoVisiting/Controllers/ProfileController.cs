@@ -40,7 +40,7 @@ namespace CoVisiting.Controllers
                 MemberSince = user.MemberSince,
                 ProfileImageUrl = user.ProfileImageUrl,
                 UserName = user.UserName,
-                UserRating = user.Rating.ToString(),
+                UserRating = user.Rating,
                 City = user.City,
                 CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
             };
@@ -69,7 +69,7 @@ namespace CoVisiting.Controllers
                 Email = user.Email,
                 City = user.City,
                 MemberSince = user.MemberSince,
-                UserRating = user.Rating.ToString(),
+                UserRating = user.Rating,
                 CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
             });
         }

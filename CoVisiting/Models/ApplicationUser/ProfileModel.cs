@@ -11,7 +11,7 @@ namespace CoVisiting.Models.ApplicationUser
         public string userId { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
-        public string UserRating { get; set; }
+        public int UserRating { get; set; }
         public string ProfileImageUrl { get; set; }
         public string City { get; set; }
         public int CountEvents { get; set; }

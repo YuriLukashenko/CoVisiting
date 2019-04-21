@@ -44,7 +44,18 @@
             <hr />
             <div class="col-lg-3">
                 <div class="row userProfileRating">
-                    @Model.UserRating
+                    @if (@Model.UserRating > 0)
+                    {
+                        <div>
+                            +@Model.UserRating.ToString()
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            @Model.UserRating.ToString()
+                        </div>
+                    }
                 </div>
                 <div class="row userProfileRatingLabel">
                     рейтинг
