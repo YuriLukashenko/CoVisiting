@@ -42,6 +42,7 @@ namespace CoVisiting
             services.AddScoped<IEvent, EventService>();
             services.AddScoped<IApplicationUser, ApplicationUserService>();
             services.AddScoped<IUpload, UploadSevice>();
+            services.AddScoped<IReply, ReplyService>();
             services.AddMvc();
         }
 

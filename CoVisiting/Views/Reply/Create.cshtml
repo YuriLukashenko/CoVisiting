@@ -1,0 +1,48 @@
+﻿@model CoVisiting.Models.Reply.NewReplyModel
+
+<div class="container body-content">
+    <div class="row eventNewNameHeader">
+        <div class="eventHeading">
+            <span class="eventIndexTitle">
+                Коментар | @Model.EventName
+            </span>
+            <span id="headingBtn">
+                <a asp-controller="Category" asp-action="Topic" asp-route-id=@Model.CategoryId class="btn btn-back">
+                    Назад до "@Model.CategoryName"
+                </a>
+            </span>
+            <span id="headingBtn">
+                <a asp-controller="Event" asp-action="Index" asp-route-id=@Model.EventId class="btn btn-back">
+                    Назад до "@Model.EventName"
+                </a>
+            </span>
+        </div>
+    </div>
+    
+    <div class="ContainerShadow">
+        <form asp-action="AddReply" method="post" id="addPostForm">
+            <div class="row col-lg-12 newReplyUser">
+                Ви створюєте коментар під іменем @Model.UserName
+            </div>
+            <div class="row col-lg-12">
+                <div class="form-group">
+                    <label asp-for="Content"> Вміст коментаря</label>
+                    <textarea rows="10" asp-for="Content" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="IsOnlyForAuthor">
+                            <input asp-for="IsOnlyForAuthor" />
+                            Тільки для автора події
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="submitPostBtn" class="btn btn-submitPost">
+                Відправити коментар
+            </button>
+            <input asp-for="CategoryId" type="hidden" />
+            <input asp-for="EventId" type="hidden" />
+        </form>
+    </div>
+</div>

@@ -17,5 +17,6 @@ namespace CoVisiting.Models.Reply
         public DateTime Created { get; set; }
 
         public string Content { get; set; }
+        public bool IsOnlyForAuthor { get; set; }
     }
 }

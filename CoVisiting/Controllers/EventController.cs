@@ -128,7 +128,8 @@ namespace CoVisiting.Controllers
                 AuthorImageUrl = reply.User.ProfileImageUrl,
                 AuthorRating = reply.User.Rating,
                 Created = reply.Created,
-                Content = reply.Content
+                Content = reply.Content,
+                IsOnlyForAuthor = reply.IsOnlyForAuthor
             });
         }
     }

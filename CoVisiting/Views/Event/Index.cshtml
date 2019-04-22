@@ -4,7 +4,7 @@
     <div class="row eventNewNameHeader">
         <div class="eventHeading">
             <span class="eventIndexTitle">
-                @Model.Title 
+                @Model.Title
             </span>
             <span id="headingBtn">
                 <a asp-controller="Category" asp-action="Topic" asp-route-id=@Model.CategoryId class="btn btn-back">
@@ -13,8 +13,8 @@
             </span>
         </div>
     </div>
-    
-    
+
+
     <div class="row eventNewPlaceHeader">
         <div class="eventHeading">
             <span class="eventIndexPlace">
@@ -33,9 +33,9 @@
             </div>
             <span class="col-md-12 eventData"> @Model.Created.ToString("dd.MM.yyyy")</span>
             @*@if (Model.IsAuthorAdmin)
-            {
-                <span class="isAdmin smaller">Admin</span>
-            }*@
+                {
+                    <span class="isAdmin smaller">Admin</span>
+                }*@
         </div>
         <div class="col-md-10 eventContentContainer">
             <div class="col-md-7 eventContentText">
@@ -68,14 +68,14 @@
                     </tbody>
                 </table>
             </div>
-        </div> 
+        </div>
     </div>
 
-    <div class="row" id="replyDivider"></div>
+    <div class="row replyDivider"></div>
 
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="row">
+        <div class="row addReplyContainer">
             <span>
                 <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">
                     Додати коментар
@@ -88,25 +88,31 @@
     {
         foreach (var reply in Model.Replies)
         {
-            <div class="row replyContent">
-                <div class="col-md-3 replyAuthorContainer">
-                    <div class="postAuthorImage" style="background-image: url(@reply.AuthorImageUrl)"></div>
-                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
-                        @reply.AuthorName
-                    </a>
-                    @*@if (reply.IsAuthorAdmin)
-                    {
-                        <div class="isAdmin smaller">Admin</div>
-                        <br />
-                    }*@
-                    <span>@reply.Created.ToString()</span>
-                </div>
-                <div class="col-md-9 replyAuthorContainer">
-                    <div class="postContent">
-                        @Html.Raw(reply.Content)
+            if (!(reply.IsOnlyForAuthor && (User.Identity.Name != Model.AuthorName && User.Identity.Name != reply.AuthorName)))
+            {
+                <div class="row Replies">
+                    <div class="col-lg-2 eventAuthorContainer">
+                        <div class="col-lg-12 eventAuthorImage" style="background-image: url(@reply.AuthorImageUrl)"></div>
+                        <div class="col-lg-8 eventAuthorName">
+                            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
+                                @reply.AuthorName
+                            </a>
+                        </div>
+                        @if (reply.AuthorName == Model.AuthorName)
+                        {
+                            <div class="col-lg-4 eventAuthorForReply">
+                                Автор
+                            </div>
+                        }
+                        <span class="col-lg-12 eventData"> @reply.Created.ToString("dd.MM.yyyy")</span>
+                    </div>
+                    <div class="col-lg-10 eventContentContainer">
+                        <div class="col-lg-12 eventContentText">
+                            @Html.Raw(reply.Content)
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     }
     else
