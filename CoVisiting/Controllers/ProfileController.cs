@@ -42,7 +42,7 @@ namespace CoVisiting.Controllers
                 UserName = user.UserName,
                 UserRating = user.Rating,
                 City = user.City,
-                CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
+                CountEvents = _eventService.GetAll().Count(newEvent => newEvent.Author.UserName == user.UserName)
             };
             return View(model);
         }
@@ -70,7 +70,7 @@ namespace CoVisiting.Controllers
                 City = user.City,
                 MemberSince = user.MemberSince,
                 UserRating = user.Rating,
-                CountEvents = _eventService.GetAll().Count(newEvent => newEvent.User.UserName == user.UserName)
+                CountEvents = _eventService.GetAll().Count(newEvent => newEvent.Author.UserName == user.UserName)
             });
         }
 

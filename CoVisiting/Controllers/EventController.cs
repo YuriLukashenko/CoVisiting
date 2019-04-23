@@ -39,10 +39,10 @@ namespace CoVisiting.Controllers
                 EventCity = newEvent.EventCity,
                 EventPlace = newEvent.EventPlace,
                 StartDateTime = newEvent.StartDateTime,
-                AuthorId = newEvent.User.Id,
-                AuthorName = newEvent.User.UserName,
-                AuthorImageUrl = newEvent.User.ProfileImageUrl,
-                AuthorRating = newEvent.User.Rating,
+                AuthorId = newEvent.Author.Id,
+                AuthorName = newEvent.Author.UserName,
+                AuthorImageUrl = newEvent.Author.ProfileImageUrl,
+                AuthorRating = newEvent.Author.Rating,
                 Created = newEvent.Created,
                 Content = newEvent.Content,
                 CategoryId = newEvent.Category.Id,
@@ -80,7 +80,7 @@ namespace CoVisiting.Controllers
 
             _eventService.Add(newEvent).Wait(); //block the current thread until the task is complete
 
-            //TODO: Implement User Rating Management
+            //TODO: Implement Author Rating Management
 
             return RedirectToAction("Index", "Event", new { id = newEvent.Id });
         }
@@ -96,7 +96,7 @@ namespace CoVisiting.Controllers
                 EventCity = model.EventCity,
                 EventPlace = model.EventPlace,
                 StartDateTime = model.StartDateTime,
-                User = user,
+                Author = user,
                 Category = category,
                 BeforeEvent = new Moving()
                 {

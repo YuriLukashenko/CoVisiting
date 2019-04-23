@@ -34,9 +34,9 @@ namespace CoVisiting.Controllers
                 EventCity = newEvent.EventCity,
                 EventPlace = newEvent.EventPlace,
                 StartDateTime = newEvent.StartDateTime,
-                AuthorId = newEvent.User.Id,
-                AuthorName = newEvent.User.UserName,
-                AuthorRating = newEvent.User.Rating,
+                AuthorId = newEvent.Author.Id,
+                AuthorName = newEvent.Author.UserName,
+                AuthorRating = newEvent.Author.Rating,
                 RepliesCount = newEvent.Replies.Count()
             });
 

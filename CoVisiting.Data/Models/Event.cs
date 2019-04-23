@@ -19,10 +19,11 @@ namespace CoVisiting.Data.Models
         public Moving BeforeEvent { get; set; }
         public Moving AfterEvent { get; set; }
         
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser Author { get; set; }
         public virtual Category Category { get; set; }
 
         public virtual IEnumerable<EventReply> Replies { get; set; }
+        public virtual IEnumerable<ApplicationUser> Subscribers { get; set; }
     }
 
     

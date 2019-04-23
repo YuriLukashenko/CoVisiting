@@ -49,9 +49,9 @@ namespace CoVisiting.Controllers
             var eventsListings = events.Select(newEvent => new EventListingModel
             {
                 Id = newEvent.Id,
-                AuthorId = newEvent.User.Id,
-                AuthorRating = newEvent.User.Rating,
-                AuthorName = newEvent.User.UserName,
+                AuthorId = newEvent.Author.Id,
+                AuthorRating = newEvent.Author.Rating,
+                AuthorName = newEvent.Author.UserName,
                 Title = newEvent.Title,
                 EventCity = newEvent.EventCity,
                 EventPlace = newEvent.EventPlace,

@@ -69,12 +69,12 @@
                                         My Profile
                                     </a>
                                 </a>
-                                @if (User.IsInRole("Admin"))
+                                @if (Author.IsInRole("Admin"))
                                 {
                                     <a role="separator dropdown-item" class="divider"></a>
                                     <a class="dropdown-header dropdown-item"> Admin </a>
                                     <li> <a asp-controller="Forum" asp-action="Create"> Create Forum</a></li>
-                                        <li> <a asp-controller="Profile" asp-action="Index"> View Users</a></li>
+                                        <li> <a asp-controller="Profile" asp-action="Index"> View Authors</a></li>
                                 }
                             </div>
                         </div>*@

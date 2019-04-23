@@ -22,7 +22,7 @@ namespace CoVisiting.Service
         public Event GetById(int id)
         {
             return _context.Events.Where(newEvent => newEvent.Id == id)
-                .Include(newEvent => newEvent.User)
+                .Include(newEvent => newEvent.Author)
                 .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.User)
                 .Include(newEvent => newEvent.Category)
                 .Include(newEvent => newEvent.BeforeEvent)
@@ -33,7 +33,7 @@ namespace CoVisiting.Service
         public IEnumerable<Event> GetAll()
         {
             return _context.Events
-                .Include(post => post.User)
+                .Include(post => post.Author)
                 .Include(post => post.Replies).ThenInclude(reply => reply.User)
                 .Include(post => post.Category)
                 .Include(newEvent => newEvent.BeforeEvent)

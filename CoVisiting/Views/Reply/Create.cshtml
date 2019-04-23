@@ -19,12 +19,15 @@
         </div>
     </div>
     
-    <div class="ContainerShadow">
+    <div class="row ContainerShadow">
         <form asp-action="AddReply" method="post" id="addPostForm">
-            <div class="row col-lg-12 newReplyUser">
-                Ви створюєте коментар під іменем @Model.UserName
+            <div class="row newReplyUser">
+                Ви створюєте коментар під іменем 
+                <strong>
+                    @Model.UserName
+                </strong>
             </div>
-            <div class="row col-lg-12">
+            <div class="row newReplyContent">
                 <div class="form-group">
                     <label asp-for="Content"> Вміст коментаря</label>
                     <textarea rows="10" asp-for="Content" class="form-control"></textarea>
@@ -38,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="submitPostBtn" class="btn btn-submitPost">
+            <button type="submit" id="submitPostBtn" class="btn btn-success newReplySumbit">
                 Відправити коментар
             </button>
             <input asp-for="CategoryId" type="hidden" />
