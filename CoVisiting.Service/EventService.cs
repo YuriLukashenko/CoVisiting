@@ -27,6 +27,7 @@ namespace CoVisiting.Service
                 .Include(newEvent => newEvent.Category)
                 .Include(newEvent => newEvent.BeforeEvent)
                 .Include(newEvent => newEvent.AfterEvent)
+                .Include(newEvent => newEvent.Subscribers)
                 .First();
         }
 
@@ -37,7 +38,8 @@ namespace CoVisiting.Service
                 .Include(post => post.Replies).ThenInclude(reply => reply.User)
                 .Include(post => post.Category)
                 .Include(newEvent => newEvent.BeforeEvent)
-                .Include(newEvent => newEvent.AfterEvent);
+                .Include(newEvent => newEvent.AfterEvent)
+                .Include(newEvent => newEvent.Subscribers);
         }
 
         public async Task Add(Event newEvent)
@@ -45,6 +47,47 @@ namespace CoVisiting.Service
             _context.Add(newEvent);
             await _context.SaveChangesAsync();
         }
+
+        public async Task AddEventSubscriber(int id, ApplicationUser user)
+        {
+            var updatingEvent = GetById(id);
+            if (updatingEvent.Subscribers == null)
+            {
+                var inital = new List<ApplicationUser>();
+                inital.Add(user);
+                updatingEvent.Subscribers = inital;
+                _context.Update(updatingEvent);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                var temp = updatingEvent.Subscribers.ToList();
+                if (!temp.Contains(user))
+                {
+                    temp.Add(user);
+                    updatingEvent.Subscribers = temp;
+                    _context.Update(updatingEvent);
+                    await _context.SaveChangesAsync();
+                }   
+            }        
+        }
+
+        public async Task DeleteEventSubscriber(int id, ApplicationUser user)
+        {
+            var updatingEvent = GetById(id);
+            if (updatingEvent.Subscribers != null)
+            {
+                var temp = updatingEvent.Subscribers.ToList();
+                if (temp.Contains(user))
+                {
+                    temp.Remove(user);
+                    updatingEvent.Subscribers = temp;
+                    _context.Update(updatingEvent);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
 
         public Task Delete(int id)
         {

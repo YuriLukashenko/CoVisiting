@@ -1,4 +1,5 @@
-﻿@model CoVisiting.Models.Reply.NewReplyModel
+﻿@using CoVisiting.Data.Enums
+@model CoVisiting.Models.Reply.NewReplyModel
 
 <div class="container body-content">
     <div class="row eventNewNameHeader">
@@ -32,11 +33,24 @@
                     <label asp-for="Content"> Вміст коментаря</label>
                     <textarea rows="10" asp-for="Content" class="form-control"></textarea>
                 </div>
-                <div class="col-md-10">  
-                    Male  
-                    @Html.RadioButtonFor(model => model.UserName, "Male")  
-                    Female  
-                    @Html.RadioButtonFor(model => model.UserName, "Female")  
+                <div class="col-lg-12 newReplyScope">
+                    <div class="marginfixB8"> 
+                        <strong> 
+                            Область видимості коментаря
+                        </strong>
+                    </div>               
+                    <div class="col-lg-12 paddingFix0">
+                        @Html.RadioButtonFor(model => model.ReplyScope, ReplyScope.ForAll)
+                        Для зареєстрованих учасників
+                    </div>
+                    <div class="col-lg-12 paddingFix0">
+                        @Html.RadioButtonFor(model => model.ReplyScope, ReplyScope.ForSubscribers)
+                        Для підписників події
+                    </div>
+                    <div class="col-lg-12 paddingFix0">
+                        @Html.RadioButtonFor(model => model.ReplyScope, ReplyScope.ForAuthor)
+                        Тільки для автора події
+                    </div>
                 </div> 
             </div>
             <button type="submit" id="submitPostBtn" class="btn btn-success newReplySumbit">

@@ -27,12 +27,18 @@ namespace CoVisiting.Controllers
             _userManager = userManager;
         }
 
+        private ApplicationUser GetUserFromClaimsPrincipal()
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null) return new ApplicationUser();
+            return _userManager.FindByIdAsync(userId).Result;
+        }
+
         public IActionResult Index(int id)
         {
             var newEvent = _eventService.GetById(id);
 
             var replies = BuildEventReplies(newEvent.Replies);
-
 
             var model = new EventIndexModel
             {
@@ -51,7 +57,10 @@ namespace CoVisiting.Controllers
                 CategoryName = newEvent.Category.Title,
                 BeforeEvent = newEvent.BeforeEvent,
                 AfterEvent = newEvent.AfterEvent,
-                Replies = replies
+                Replies = replies,
+                Subscribers = newEvent.Subscribers,
+                IsCurrentUserSubscribed = newEvent.Subscribers.Contains(GetUserFromClaimsPrincipal())
+                
             };
 
             return View(model);
@@ -72,11 +81,28 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> AddSubscriber(int id)
+        {
+            ApplicationUser user = GetUserFromClaimsPrincipal();
+
+            await _eventService.AddEventSubscriber(id, user);
+
+            return RedirectToAction("Index", "Event", new { id });
+        }
+
+        public async Task <IActionResult> DeleteSubscriber(int id)
+        {
+            ApplicationUser user = GetUserFromClaimsPrincipal();
+
+            await _eventService.DeleteEventSubscriber(id, user);
+
+            return RedirectToAction("Index", "Event", new { id });
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPost(NewEventModel model)
         {
-            var userId = _userManager.GetUserId(User);
-            var user = _userManager.FindByIdAsync(userId).Result;
+            ApplicationUser user = GetUserFromClaimsPrincipal();
 
             var newEvent = BuildEvent(model, user);
 
@@ -115,10 +141,13 @@ namespace CoVisiting.Controllers
                     DepartureTime = model.DepartureTimeBefore,
                     ArrivalCity = model.ArrivalCityBefore,
                     ArrivalTime = model.ArrivalTimeBefore
+                },
+                Subscribers = new List<ApplicationUser>()
+                {
+                    GetUserFromClaimsPrincipal()     
                 }
             };
         }
-
 
         private IEnumerable<EventReplyModel> BuildEventReplies(IEnumerable<EventReply> replies)
         {
@@ -131,9 +160,34 @@ namespace CoVisiting.Controllers
                 AuthorRating = reply.User.Rating,
                 Created = reply.Created,
                 Content = reply.Content,
-                //todo implement
-                IsVisible = true
+                IsVisible = CheckReplyVisibility(reply)
             });
+        }
+
+        private bool CheckReplyVisibility(EventReply reply)
+        {
+            ApplicationUser user = GetUserFromClaimsPrincipal();
+
+            //self check
+            if (user == reply.User) return true;
+
+            //check roles
+            if (reply.ReplyScope == ReplyScope.ForAll)
+            {
+                return true;
+            }
+            else if (reply.ReplyScope == ReplyScope.ForSubscribers)
+            {
+                if (reply.Event.Subscribers.Contains(user)) return true;
+                else return false;
+            }
+            else if (reply.ReplyScope == ReplyScope.ForAuthor)
+            {
+                if (user == reply.Event.Author) return true;
+                else return false;
+            }
+
+            return false;
         }
     }
 }

@@ -30,6 +30,8 @@ namespace CoVisiting.Models.Event
         public Moving AfterEvent { get; set; }
 
         public IEnumerable<EventReplyModel> Replies { get; set; }
+        public IEnumerable<Data.Models.ApplicationUser> Subscribers { get; set; }
 
+        public bool IsCurrentUserSubscribed { get; set; }
     }
 }

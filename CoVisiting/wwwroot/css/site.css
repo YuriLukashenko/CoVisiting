@@ -250,6 +250,9 @@
 
 .eventReplyText {
     font-size: 1.2em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .eventAuthorRating {
@@ -566,6 +569,12 @@
     border: 2px dotted rgba(0, 175, 188, 1);
 }
 
+.newReplyScope {
+    padding: 20px;
+    margin: 0px;
+    border: 2px dotted rgba(0, 175, 188, 1);
+}
+
 .newReplyContent {
     margin: 20px;
 }
@@ -578,6 +587,12 @@
     max-width: 30%;
     align-self: flex-end;
 }
+
+.replyReply{
+    align-self: flex-end;
+}
+
+
 /*MARGIN && PADDING FIXES*/
 .paddingFix16 {
     padding: 16px;
@@ -591,10 +606,18 @@
     margin-top: 8px;
 }
 
+.marginfixB8 {
+    margin-bottom: 8px;
+}
+
 .marginfixL_10B10{
     margin-left: -10px;
     margin-bottom: 10px;
     margin-top: -20px;
+}
+
+.paddingFix0 {
+    padding: 0px;
 }
 
 .paddingFix8 {

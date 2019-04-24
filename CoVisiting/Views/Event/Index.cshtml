@@ -40,9 +40,21 @@
         <div class="col-md-10 eventContentContainer">
             <div class="col-md-7 eventContentText">
                 @Html.Raw(Model.Content)
-                <div class="btn btn-danger subscribeToEvent">
-                    Підписатись
-                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (Model.IsCurrentUserSubscribed)
+                     {
+                         <a asp-controller="Event" asp-action="DeleteSubscriber" asp-route-id="@Model.Id" class="btn btn-default subscribeToEvent">
+                             Відписатись @Model.Subscribers.Count()
+                         </a>
+                     }
+                     else
+                     {
+                         <a asp-controller="Event" asp-action="AddSubscriber" asp-route-id="@Model.Id" class="btn btn-danger subscribeToEvent">
+                             Підписатись @Model.Subscribers.Count()
+                         </a>
+                     }
+                }
             </div>
             <div class="col-md-5">
                 <table class="table table-hover">
@@ -84,45 +96,56 @@
                 </a>
             </span>
         </div>
-    }
 
-    @if (Model.Replies.Any())
-    {
-        foreach (var reply in Model.Replies)
-        {
-            if (reply.IsVisible)
-            {
-                <div class="row Replies">
-                    <div class="col-lg-2 eventAuthorContainer">
-                        <div class="col-lg-12 eventAuthorImage" style="background-image: url(@reply.AuthorImageUrl)"></div>
-                        <div class="col-lg-8 eventAuthorName">
-                            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
-                                @reply.AuthorName
-                            </a>
-                        </div>
-                        @if (reply.AuthorName == Model.AuthorName)
-                        {
-                            <div class="col-lg-4 eventAuthorForReply">
-                                Автор
-                            </div>
-                        }
-                        <span class="col-lg-12 eventData"> @reply.Created.ToString("dd.MM.yyyy")</span>
-                    </div>
-                    <div class="col-lg-10 eventContentContainer">
-                        <div class="col-lg-12 eventReplyText">
-                            @Html.Raw(reply.Content)
-                        </div>
-                    </div>
-                </div>
-            }
-        }
+        @if (Model.Replies.Any())
+         {
+             foreach (var reply in Model.Replies)
+             {
+                 if (reply.IsVisible)
+                 {
+                     <div class="row Replies">
+                         <div class="col-lg-2 eventAuthorContainer">
+                             <div class="col-lg-12 eventAuthorImage" style="background-image: url(@reply.AuthorImageUrl)"></div>
+                             <div class="col-lg-8 eventAuthorName">
+                                 <a asp-controller="Profile" asp-action="Detail" asp-route-id="@reply.AuthorId">
+                                     @reply.AuthorName
+                                 </a>
+                             </div>
+                             @if (reply.AuthorName == Model.AuthorName)
+                             {
+                                 <div class="col-lg-4 eventAuthorForReply">
+                                     Автор
+                                 </div>
+                             }
+                             <span class="col-lg-9 eventData"> @reply.Created.ToString("dd.MM.yyyy")</span>
+                         </div>
+                         <div class="col-lg-9 eventContentContainer">
+                             <div class="col-lg-12 eventReplyText">
+                                 @Html.Raw(reply.Content)
+                             </div>
+                         </div>
+                         <div class="col-lg-1 eventContentContainer">
+                             <a asp-controller="Event" asp-action="DeleteSubscriber" asp-route-id="@Model.Id" class="btn btn-default replyReply">
+                                 Відписатись @Model.Subscribers.Count()
+                             </a>
+                         </div>
+                     </div>
+                 }
+             }
+         }
+         else
+         {
+             <div class="noEvents">
+                 <h3>
+                     Тут ще немає коментарів ... <br/>
+                 </h3>
+             </div>
+         }
     }
     else
     {
-        <div class="noEvents">
-            <h3>
-                Тут ще немає коментарів ... <br />
-            </h3>
+        <div>
+            Потрібно зарєєструватися щоб коментувати
         </div>
     }
 </div>

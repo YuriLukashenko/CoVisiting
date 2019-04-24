@@ -12,6 +12,8 @@ namespace CoVisiting.Data.Interfaces
         IEnumerable<Event> GetAll();
 
         Task Add(Event post);
+        Task AddEventSubscriber(int id, ApplicationUser user);
+        Task DeleteEventSubscriber(int id, ApplicationUser user);
         Task Delete(int id);
         Task EditEventContent(int id, string newContent);
 
