@@ -23,7 +23,7 @@
     <div class="row ContainerShadow">
         <form asp-action="AddReply" method="post" id="addPostForm">
             <div class="row newReplyUser">
-                Ви створюєте коментар під іменем 
+                Ви створюєте коментар під іменем
                 <strong>
                     @Model.UserName
                 </strong>
@@ -34,11 +34,11 @@
                     <textarea rows="10" asp-for="Content" class="form-control"></textarea>
                 </div>
                 <div class="col-lg-12 newReplyScope">
-                    <div class="marginfixB8"> 
-                        <strong> 
+                    <div class="marginfixB8">
+                        <strong>
                             Область видимості коментаря
                         </strong>
-                    </div>               
+                    </div>
                     <div class="col-lg-12 paddingFix0">
                         @Html.RadioButtonFor(model => model.ReplyScope, ReplyScope.ForAll)
                         Для зареєстрованих учасників
@@ -49,15 +49,16 @@
                     </div>
                     <div class="col-lg-12 paddingFix0">
                         @Html.RadioButtonFor(model => model.ReplyScope, ReplyScope.ForAuthor)
-                        Тільки для автора події
+                        Тільки для @Model.Reciever.UserName
                     </div>
-                </div> 
+                </div>
             </div>
             <button type="submit" id="submitPostBtn" class="btn btn-success newReplySumbit">
                 Відправити коментар
             </button>
             <input asp-for="CategoryId" type="hidden" />
             <input asp-for="EventId" type="hidden" />
+            <input asp-for="RecieverId" type="hidden" />
         </form>
     </div>
 </div>

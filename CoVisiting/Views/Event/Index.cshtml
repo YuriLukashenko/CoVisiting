@@ -91,7 +91,7 @@
     {
         <div class="row addReplyContainer">
             <span>
-                <a asp-controller="Reply" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-newReply">
+                <a asp-controller="Reply" asp-action="Create" asp-route-eventId="@Model.Id" asp-route-recieverId="@Model.AuthorId" class="btn btn-newReply">
                     Додати коментар
                 </a>
             </span>
@@ -125,7 +125,7 @@
                              </div>
                          </div>
                          <div class="col-lg-1 eventContentContainer">
-                             <a asp-controller="Reply" asp-action="CreatePrivate" asp-route-id="@Model.Id" asp-route-author="@reply.AuthorId" class="btn btn-newReply replyReply">
+                             <a asp-controller="Reply" asp-action="Create" asp-route-eventId="@Model.Id" asp-route-recieverId="@reply.AuthorId" class="btn btn-newReply replyReply">
                                  Відповісти 
                              </a>
                          </div>

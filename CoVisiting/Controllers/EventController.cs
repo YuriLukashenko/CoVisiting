@@ -183,8 +183,7 @@ namespace CoVisiting.Controllers
             }
             else if (reply.ReplyScope == ReplyScope.ForAuthor)
             {
-                if (user == reply.Event.Author) return true;
-                else if (user == reply.Reciever)return true;
+                if (user == reply.Reciever) return true;
                 else return false;
             }
 

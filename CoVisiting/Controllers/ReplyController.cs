@@ -36,26 +36,9 @@ namespace CoVisiting.Controllers
         }
 
 
-        public IActionResult Create(int id)
+        public IActionResult Create(int eventId, string recieverId)
         {
-            var currentEvent = _eventService.GetById(id);
-            var category = currentEvent.Category;
-
-            var model = new NewReplyModel
-            {
-                EventId = currentEvent.Id,
-                EventName = currentEvent.Title,
-                UserName = User.Identity.Name,
-                CategoryName = category.Title,
-                CategoryId = category.Id
-            };
-
-            return View(model);
-        }
-
-        public IActionResult CreatePrivate(int id, string author)
-        {
-            var currentEvent = _eventService.GetById(id);
+            var currentEvent = _eventService.GetById(eventId);
             var category = currentEvent.Category;
 
             var model = new NewReplyModel
@@ -65,62 +48,32 @@ namespace CoVisiting.Controllers
                 UserName = User.Identity.Name,
                 CategoryName = category.Title,
                 CategoryId = category.Id,
-                Reciever = _applicationUser.GetById(author)
+                Sender = GetUserFromClaimsPrincipal(),
+                Reciever = _applicationUser.GetById(recieverId),
+                RecieverId = recieverId
             };
 
             return View(model);
         }
 
-
-
         [HttpPost]
         public async Task<IActionResult> AddReply(NewReplyModel model)
         {
-            ApplicationUser user = GetUserFromClaimsPrincipal();
-
             var currentEvent = _eventService.GetById(model.EventId);
 
-            var newReply = BuildReply(model, user, currentEvent);
+            var newReply = BuildReply(model, currentEvent);
 
             _replyService.Add(newReply).Wait();
 
             return RedirectToAction("Index", "Event", new { id = currentEvent.Id });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddReplyPrivate(NewReplyModel model)
-        {
-            ApplicationUser user = GetUserFromClaimsPrincipal();
-
-            var currentEvent = _eventService.GetById(model.EventId);
-
-            var newReply = BuildReply(model, user, currentEvent);
-
-            _replyService.Add(newReply).Wait();
-
-            return RedirectToAction("Index", "Event", new { id = currentEvent.Id });
-        }
-
-
-        private EventReply BuildReply(NewReplyModel model, ApplicationUser user, Event currentEvent)
+        private EventReply BuildReply(NewReplyModel model, Event currentEvent)
         {
             return new EventReply()
             {
-                Sender = user,
-                Reciever = user,
-                Event = currentEvent,
-                Content = model.Content,
-                Created = DateTime.Now,
-                ReplyScope = model.ReplyScope
-            };
-        }
-
-        private EventReply BuildReplyPrivate(NewReplyModel model, ApplicationUser user, Event currentEvent)
-        {
-            return new EventReply()
-            {
-                Sender = user,
-                Reciever = model.Reciever,
+                Sender = GetUserFromClaimsPrincipal(),
+                Reciever = _applicationUser.GetById(model.RecieverId),
                 Event = currentEvent,
                 Content = model.Content,
                 Created = DateTime.Now,

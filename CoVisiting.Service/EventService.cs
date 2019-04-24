@@ -24,6 +24,7 @@ namespace CoVisiting.Service
             return _context.Events.Where(newEvent => newEvent.Id == id)
                 .Include(newEvent => newEvent.Author)
                 .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Sender)
+                .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Reciever)
                 .Include(newEvent => newEvent.Category)
                 .Include(newEvent => newEvent.BeforeEvent)
                 .Include(newEvent => newEvent.AfterEvent)
@@ -36,6 +37,7 @@ namespace CoVisiting.Service
             return _context.Events
                 .Include(post => post.Author)
                 .Include(post => post.Replies).ThenInclude(reply => reply.Sender)
+                .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Reciever)
                 .Include(post => post.Category)
                 .Include(newEvent => newEvent.BeforeEvent)
                 .Include(newEvent => newEvent.AfterEvent)
