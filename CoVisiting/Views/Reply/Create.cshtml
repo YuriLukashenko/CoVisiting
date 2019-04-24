@@ -32,14 +32,12 @@
                     <label asp-for="Content"> Вміст коментаря</label>
                     <textarea rows="10" asp-for="Content" class="form-control"></textarea>
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="IsOnlyForAuthor">
-                            <input asp-for="IsOnlyForAuthor" />
-                            Тільки для автора події
-                        </label>
-                    </div>
-                </div>
+                <div class="col-md-10">  
+                    Male  
+                    @Html.RadioButtonFor(model => model.UserName, "Male")  
+                    Female  
+                    @Html.RadioButtonFor(model => model.UserName, "Female")  
+                </div> 
             </div>
             <button type="submit" id="submitPostBtn" class="btn btn-success newReplySumbit">
                 Відправити коментар

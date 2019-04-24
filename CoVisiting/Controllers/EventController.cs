@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoVisiting.Data.Interfaces;
+using CoVisiting.Data.Enums;
 using CoVisiting.Data.Models;
 using CoVisiting.Models.Event;
 using CoVisiting.Models.Reply;
@@ -31,6 +32,7 @@ namespace CoVisiting.Controllers
             var newEvent = _eventService.GetById(id);
 
             var replies = BuildEventReplies(newEvent.Replies);
+
 
             var model = new EventIndexModel
             {
@@ -129,7 +131,8 @@ namespace CoVisiting.Controllers
                 AuthorRating = reply.User.Rating,
                 Created = reply.Created,
                 Content = reply.Content,
-                IsOnlyForAuthor = reply.IsOnlyForAuthor
+                //todo implement
+                IsVisible = true
             });
         }
     }

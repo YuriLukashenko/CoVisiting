@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoVisiting.Data.Enums;
 
 namespace CoVisiting.Models.Reply
 {
@@ -17,6 +18,7 @@ namespace CoVisiting.Models.Reply
         public DateTime Created { get; set; }
 
         public string Content { get; set; }
-        public bool IsOnlyForAuthor { get; set; }
+        public ReplyScope ReplyScope { get; set; }
+        public bool IsVisible { get; set; }
     }
 }

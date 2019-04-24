@@ -67,7 +67,7 @@ namespace CoVisiting.Controllers
                 Event = currentEvent,
                 Content = model.Content,
                 Created = DateTime.Now,
-                IsOnlyForAuthor = model.IsOnlyForAuthor
+                ReplyScope = model.ReplyScope
             };
         }
     }

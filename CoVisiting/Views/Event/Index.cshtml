@@ -90,7 +90,7 @@
     {
         foreach (var reply in Model.Replies)
         {
-            if (!(reply.IsOnlyForAuthor && (User.Identity.Name != Model.AuthorName && User.Identity.Name != reply.AuthorName)))
+            if (reply.IsVisible)
             {
                 <div class="row Replies">
                     <div class="col-lg-2 eventAuthorContainer">

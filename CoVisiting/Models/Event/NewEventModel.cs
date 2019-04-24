@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoVisiting.Data.Enums;
 using CoVisiting.Data.Models;
 
 namespace CoVisiting.Models.Event

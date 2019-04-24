@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoVisiting.Data.Enums;
 
 namespace CoVisiting.Data.Models
 {
@@ -9,7 +10,7 @@ namespace CoVisiting.Data.Models
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime Created { get; set; }
-        public bool IsOnlyForAuthor { get; set; }
+        public ReplyScope ReplyScope { get; set; }
 
         public virtual ApplicationUser User { get; set; }
         public virtual Event Event { get; set; }

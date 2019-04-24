@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoVisiting.Data.Models
+namespace CoVisiting.Data.Enums
 {
     public enum TransportType
     {
