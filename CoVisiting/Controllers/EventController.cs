@@ -154,10 +154,10 @@ namespace CoVisiting.Controllers
             return replies.Select(reply => new EventReplyModel()
             {
                 Id = reply.Id,
-                AuthorId = reply.User.Id,
-                AuthorName = reply.User.UserName,
-                AuthorImageUrl = reply.User.ProfileImageUrl,
-                AuthorRating = reply.User.Rating,
+                AuthorId = reply.Sender.Id,
+                AuthorName = reply.Sender.UserName,
+                AuthorImageUrl = reply.Sender.ProfileImageUrl,
+                AuthorRating = reply.Sender.Rating,
                 Created = reply.Created,
                 Content = reply.Content,
                 IsVisible = CheckReplyVisibility(reply)
@@ -169,7 +169,7 @@ namespace CoVisiting.Controllers
             ApplicationUser user = GetUserFromClaimsPrincipal();
 
             //self check
-            if (user == reply.User) return true;
+            if (user == reply.Sender) return true;
 
             //check roles
             if (reply.ReplyScope == ReplyScope.ForAll)
@@ -184,6 +184,7 @@ namespace CoVisiting.Controllers
             else if (reply.ReplyScope == ReplyScope.ForAuthor)
             {
                 if (user == reply.Event.Author) return true;
+                else if (user == reply.Reciever)return true;
                 else return false;
             }
 

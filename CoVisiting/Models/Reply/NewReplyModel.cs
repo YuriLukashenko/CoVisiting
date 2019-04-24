@@ -18,5 +18,7 @@ namespace CoVisiting.Models.Reply
         public string Content { get; set; }
         public ReplyScope ReplyScope { get; set; }
 
+        public Data.Models.ApplicationUser Reciever { get; set; }
+
     }
 }

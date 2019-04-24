@@ -12,7 +12,8 @@ namespace CoVisiting.Data.Models
         public DateTime Created { get; set; }
         public ReplyScope ReplyScope { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser Sender { get; set; }
+        public virtual ApplicationUser Reciever { get; set; }
         public virtual Event Event { get; set; }
     }
 }
