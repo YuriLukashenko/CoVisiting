@@ -16,6 +16,7 @@ namespace CoVisiting.Data.Models
         public DateTime Created { get; set; }
         public string Content { get; set; }
 
+        public bool isBeforeAfter { get; set; }
         public Moving BeforeEvent { get; set; }
         public Moving AfterEvent { get; set; }
         

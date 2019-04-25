@@ -1,86 +1,116 @@
 ﻿@model CoVisiting.Models.Event.NewEventModel
 
-<h1> Нова подія | @Model.CategoryName </h1>
 
-<form asp-action="AddPost" method="post" id="addPostForm">
-    <div class="form-group">
-        <label asp-for="Title"> Назва події</label>
-        <input asp-for="Title" class="form-control" />
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label asp-for="EventCity"> Місто</label>
-                <input asp-for="EventCity" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="EventPlace"> Місце події</label>
-                <input asp-for="EventPlace" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDateTime"> Початок </label>
-                <input asp-for="StartDateTime" class="form-control" />
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label asp-for="Content"> Опис події</label>
-                <textarea rows="8" asp-for="Content" class="form-control"></textarea>
-            </div>
+<div class="container body-content">
+    <div class="row userProfileHeader globalMarginFix_30">
+        <div class="userProfileHeading">
+            Нова подія | @Model.CategoryName
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-6">
-            До події
-            <div class="form-group">
-                <label asp-for="TransportTypeBefore"> Тип транспорту:</label>
-                <input asp-for="TransportTypeBefore" class="form-control"/>
+    <div class="row globalMarginFix_30 ContainerShadow paddingFix16">
+        <form asp-action="AddPost" method="post" id="addPostForm">
+            <div class="">
+                <div class="form-group">
+                    <label asp-for="Title"> Назва події</label>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+                <div class="row newReplyUser">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="EventCity"> Місто</label>
+                            <input asp-for="EventCity" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventPlace"> Місце події</label>
+                            <input asp-for="EventPlace" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StartDateTime"> Початок </label>
+                            <input asp-for="StartDateTime" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Content"> Опис події</label>
+                            <textarea rows="8" asp-for="Content" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DepartureCityBefore"> Місто відправлення </label>
-                <input asp-for="DepartureCityBefore" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartureTimeBefore"> Час відправлення </label>
-                <input asp-for="DepartureTimeBefore" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArrivalCityBefore"> Місто прибуття </label>
-                <input asp-for="ArrivalCityBefore" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArrivalTimeBefore"> Час прибуття </label>
-                <input asp-for="ArrivalTimeBefore" class="form-control"/>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            Після події
-            <div class="form-group">
-                <label asp-for="TransportTypeAfter"> Тип транспорту:</label>
-                <input asp-for="TransportTypeAfter" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartureCityAfter"> Місто відправлення </label>
-                <input asp-for="DepartureCityAfter" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="DepartureTimeAfter"> Час відправлення </label>
-                <input asp-for="DepartureTimeAfter" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArrivalCityAfter"> Місто прибуття </label>
-                <input asp-for="ArrivalCityAfter" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArrivalTimeAfter"> Час прибуття </label>
-                <input asp-for="ArrivalTimeAfter" class="form-control"/>
-            </div>
-        </div>
-    </div>
 
-        <button type="submit" id="submitPostBtn" class="btn btn-submitPost">
-            Submit Post
-        </button>
-        <input asp-for="CategoryId" type="hidden" />
-</form>
+            @if (!Model.isBeforeAfter)
+            {
+                <a asp-controller="Event" asp-action="ShowHide" asp-route-id="@Model.CategoryId" asp-route-state="true" class="btn btn-primary addEventInfo">
+                    Більше даних
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Event" asp-action="ShowHide" asp-route-id="@Model.CategoryId" asp-route-state="false" class="btn btn-danger addEventInfo">
+                    Менше даних
+                </a>
+            }
+
+            @if (Model.isBeforeAfter)
+            {
+                <div class="row newEventAnimation">
+                    <div class="col-lg-6 ">
+                        <span class="BeforeAfterHeader"> До події </span>
+                        <div class="newReplyUser">
+                            <div class="form-group">
+                                <label asp-for="TransportTypeBefore"> Тип транспорту:</label>
+                                <input asp-for="TransportTypeBefore" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartureCityBefore"> Місто відправлення </label>
+                                <input asp-for="DepartureCityBefore" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartureTimeBefore"> Час відправлення </label>
+                                <input asp-for="DepartureTimeBefore" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ArrivalCityBefore"> Місто прибуття </label>
+                                <input asp-for="ArrivalCityBefore" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ArrivalTimeBefore"> Час прибуття </label>
+                                <input asp-for="ArrivalTimeBefore" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="BeforeAfterHeader"> Після події</span>
+                        <div class="newReplyUser">
+                            <div class="form-group">
+                                <label asp-for="TransportTypeAfter"> Тип транспорту:</label>
+                                <input asp-for="TransportTypeAfter" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartureCityAfter"> Місто відправлення </label>
+                                <input asp-for="DepartureCityAfter" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartureTimeAfter"> Час відправлення </label>
+                                <input asp-for="DepartureTimeAfter" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ArrivalCityAfter"> Місто прибуття </label>
+                                <input asp-for="ArrivalCityAfter" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ArrivalTimeAfter"> Час прибуття </label>
+                                <input asp-for="ArrivalTimeAfter" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <button type="submit" id="submitPostBtn" class="btn btn-success addEventInfo">
+                Опублікувати подію
+            </button>
+            <input asp-for="CategoryId" type="hidden" />
+        </form>
+    </div>
+</div>

@@ -66,7 +66,12 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
-        public IActionResult Create(int id)
+        public IActionResult ShowHide(int id, bool state)
+        {
+            return RedirectToAction("Create", "Event", new { id, state });
+        }
+
+        public IActionResult Create(int id, bool state = false)
         {
             var category = _categoryService.GetById(id);
 
@@ -75,7 +80,8 @@ namespace CoVisiting.Controllers
                 CategoryId = category.Id,
                 CategoryName = category.Title,
                 CategoryImageUrl = category.ImageUrl,
-                AuthorName = User.Identity.Name
+                AuthorName = User.Identity.Name,
+                isBeforeAfter = state
             };
 
             return View(model);

@@ -19,6 +19,7 @@ namespace CoVisiting.Models.Event
         public DateTime StartDateTime { get; set; }
 
         public string Content { get; set; }
+        public bool isBeforeAfter { get; set; }
 
         public TransportType TransportTypeBefore { get; set; }
         public string DepartureCityBefore { get; set; }

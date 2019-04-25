@@ -661,21 +661,28 @@
 }
 
 
-
-
-
-
-.radio .btn,
-
-.radio-inline .btn {
-
-    padding-left: 2em;
-
-    min-width: 7em;
-
+.addEventInfo {
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+    width: 200px;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
- 
+.BeforeAfterHeader {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.radio .btn,
+.radio-inline .btn {
+    padding-left: 2em;
+    min-width: 7em;
+}
 
 .radio label,
 
