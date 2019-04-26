@@ -1,21 +1,30 @@
 ﻿@model CoVisiting.Models.Category.CategoryIndexModel
 
-<h1> Категорії подій </h1>
-    
-<table class="table table-hover" id="categoryIndexTable">
-    <tbody>
-    @foreach (var category in @Model.CategoryList)
-    {
-        <tr>
-            <td>
-                <a asp-controller="Category" asp-action="Topic" asp-route-id="@category.Id">
-                    @category.Name
-                </a>              
-            </td>
-            <td>
-                @category.Description
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+<div class="container body-content">
+    <div class="row userProfileHeader globalMarginFix_30">
+        <div class="userProfileHeading">
+            Категорії подій
+        </div>
+    </div>
+
+    <div class="row globalMarginFix_30 ContainerShadow paddingFix16">
+        <table class="table table-hover" id="categoryIndexTable">
+            <tbody>
+                @foreach (var category in @Model.CategoryList)
+                {
+                    <tr onclick="location.href = '@(Url.Action("Topic", "Category", new { Id = category.Id}))'">
+
+                        <td class="col-lg-1 CategoryListingImage" style="background-image:url(@category.ImageUrl)"></td>
+                        <td class="CategoryListingContent">
+                            @category.Name
+                        </td>
+                        <td class="CategoryListingContent">
+                            @category.Description
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

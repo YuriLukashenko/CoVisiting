@@ -28,7 +28,8 @@ namespace CoVisiting.Controllers
                 {
                     Id = category.Id,
                     Name = category.Title,
-                    Description = category.Description
+                    Description = category.Description,
+                    ImageUrl = category.ImageUrl
                 });
 
             var model = new CategoryIndexModel()

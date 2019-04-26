@@ -41,7 +41,7 @@
 
             @if (!Model.isBeforeAfter)
             {
-                <a asp-controller="Event" asp-action="ShowHide" asp-route-id="@Model.CategoryId" asp-route-state="true" class="btn btn-primary addEventInfo">
+               <a asp-controller="Event" asp-action="ShowHide" asp-route-id="@Model.CategoryId" asp-route-state="true" class="btn btn-primary addEventInfo">
                     Більше даних
                 </a>
             }
@@ -60,7 +60,7 @@
                         <div class="newReplyUser">
                             <div class="form-group">
                                 <label asp-for="TransportTypeBefore"> Тип транспорту:</label>
-                                <input asp-for="TransportTypeBefore" class="form-control" />
+                                <select class="form-control" asp-for="TransportTypeBefore" asp-items="Html.GetEnumSelectList<CoVisiting.Data.Enums.TransportType>()"></select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DepartureCityBefore"> Місто відправлення </label>
@@ -85,7 +85,7 @@
                         <div class="newReplyUser">
                             <div class="form-group">
                                 <label asp-for="TransportTypeAfter"> Тип транспорту:</label>
-                                <input asp-for="TransportTypeAfter" class="form-control" />
+                                <select class="form-control" asp-for="TransportTypeAfter" asp-items="Html.GetEnumSelectList<CoVisiting.Data.Enums.TransportType>()"></select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DepartureCityAfter"> Місто відправлення </label>

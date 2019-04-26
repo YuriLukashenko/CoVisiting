@@ -81,7 +81,12 @@ namespace CoVisiting.Controllers
                 CategoryName = category.Title,
                 CategoryImageUrl = category.ImageUrl,
                 AuthorName = User.Identity.Name,
-                isBeforeAfter = state
+                isBeforeAfter = state,
+                StartDateTime = DateTime.Today,
+                DepartureTimeBefore = DateTime.Today,
+                DepartureTimeAfter = DateTime.Today,
+                ArrivalTimeBefore = DateTime.Today,
+                ArrivalTimeAfter = DateTime.Today
             };
 
             return View(model);
