@@ -10,7 +10,6 @@ namespace CoVisiting.Data.Models
         public string Title { get; set; }
         public string EventCity { get; set; }
         public string EventPlace { get; set; }
-        public int EventRating { get; set; }
         public DateTime StartDateTime { get; set; }
 
         public DateTime Created { get; set; }
@@ -24,7 +23,7 @@ namespace CoVisiting.Data.Models
         public virtual Category Category { get; set; }
 
         public virtual IEnumerable<EventReply> Replies { get; set; }
-        public virtual IEnumerable<ApplicationUser> Subscribers { get; set; }
+        public virtual IEnumerable<UserEventJoinTable> Subscribers { get; set; }
     }
 
     

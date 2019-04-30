@@ -161,17 +161,17 @@
     border-radius: 50px;
 }
 
-.likeReply {
+.SubscribersReplies {
     display: flex;
     justify-content: flex-end;
-    margin-right: 19px; 
+    margin-right: 19px;
 }
 
-.likeLogo {
+.SubscriberLogo {
     height: 24px;
     width: 24px;
     background-size: 100%;
-    background-image: url("/images/heart-off.png");
+    background-image: url("/images/users.png");
 }
 
 .replyLogo {

@@ -36,7 +36,7 @@ namespace CoVisiting.Controllers
                 Id = newEvent.Id,
                 Category = GetCategoryListingForEvent(newEvent),
                 Title = newEvent.Title,
-                EventRating = newEvent.EventRating,
+                EventSubscribersCount = newEvent.Subscribers.Count(),
                 EventCity = newEvent.EventCity,
                 EventPlace = newEvent.EventPlace,
                 StartDateTime = newEvent.StartDateTime,

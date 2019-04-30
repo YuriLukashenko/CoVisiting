@@ -12,9 +12,10 @@ using System;
 namespace CoVisiting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190429212405_RefactorLikesToCountSubs")]
+    partial class RefactorLikesToCountSubs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,6 +38,8 @@ namespace CoVisiting.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<int?>("EventId");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -70,6 +73,8 @@ namespace CoVisiting.Data.Migrations
                     b.Property<bool>("isActive");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -186,21 +191,6 @@ namespace CoVisiting.Data.Migrations
                     b.ToTable("Moving");
                 });
 
-            modelBuilder.Entity("CoVisiting.Data.Models.UserEventJoinTable", b =>
-                {
-                    b.Property<int>("EventId");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.HasKey("EventId", "UserId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("UserEventJoinTable");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -309,6 +299,13 @@ namespace CoVisiting.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CoVisiting.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("CoVisiting.Data.Models.Event")
+                        .WithMany("Subscribers")
+                        .HasForeignKey("EventId");
+                });
+
             modelBuilder.Entity("CoVisiting.Data.Models.Event", b =>
                 {
                     b.HasOne("CoVisiting.Data.Models.Moving", "AfterEvent")
@@ -341,18 +338,6 @@ namespace CoVisiting.Data.Migrations
                     b.HasOne("CoVisiting.Data.Models.ApplicationUser", "Sender")
                         .WithMany()
                         .HasForeignKey("SenderId");
-                });
-
-            modelBuilder.Entity("CoVisiting.Data.Models.UserEventJoinTable", b =>
-                {
-                    b.HasOne("CoVisiting.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("Events")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("CoVisiting.Data.Models.Event", "Event")
-                        .WithMany("Subscribers")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

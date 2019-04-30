@@ -12,9 +12,10 @@ using System;
 namespace CoVisiting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190429233034_ManyToManySubsEvents")]
+    partial class ManyToManySubsEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,11 +193,11 @@ namespace CoVisiting.Data.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("AppUserId");
 
                     b.HasKey("EventId", "UserId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("UserEventJoinTable");
                 });
@@ -345,9 +346,9 @@ namespace CoVisiting.Data.Migrations
 
             modelBuilder.Entity("CoVisiting.Data.Models.UserEventJoinTable", b =>
                 {
-                    b.HasOne("CoVisiting.Data.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("CoVisiting.Data.Models.ApplicationUser", "AppUser")
                         .WithMany("Events")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("AppUserId");
 
                     b.HasOne("CoVisiting.Data.Models.Event", "Event")
                         .WithMany("Subscribers")

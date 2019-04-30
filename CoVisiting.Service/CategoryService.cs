@@ -24,6 +24,7 @@ namespace CoVisiting.Service
             return _context.Categories.Where(c => c.Id == id)
                 .Include(c => c.Events).ThenInclude(e => e.Author)
                 .Include(c => c.Events).ThenInclude(e => e.Replies).ThenInclude(r => r.Sender)
+                .Include(c => c.Events).ThenInclude(e => e.Subscribers).ThenInclude(s => s.ApplicationUser)
                 .FirstOrDefault();
         }
 

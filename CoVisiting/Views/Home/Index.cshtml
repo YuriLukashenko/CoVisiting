@@ -32,22 +32,26 @@
                     <div class="EventStart">
                         @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
                     </div>
-                    <div>
-                        <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
-                            @newEvent.AuthorName
-                        </a>
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
+                                @newEvent.AuthorName
+                            </a>
+                        </div>
+
                     <div class="row">
                         <div class="col-lg-2 AuthorRatingClass">
                             +@newEvent.AuthorRating
                         </div>
-                        <div class="likeReply">
-                            <div class="likeLogo"> </div>
-                            <div class=""> @newEvent.EventRating </div>
+                        <div class="SubscribersReplies">
+                            <div class="SubscriberLogo"> </div>
+                            <div class=""> @newEvent.EventSubscribersCount </div>
                             <div class="replyLogo"> </div>
                             <div class=""> @newEvent.RepliesCount.ToString() </div>
                         </div>
                     </div>
+                    }
                 </div>
             </a>
         }

@@ -40,6 +40,12 @@ namespace CoVisiting.Controllers
 
             var replies = BuildEventReplies(newEvent.Replies);
 
+            foreach(var subscriber in newEvent.Subscribers)
+            {
+                if (subscriber.ApplicationUser == null)
+                    subscriber.ApplicationUser = _userManager.FindByIdAsync(subscriber.UserId).Result;
+            }
+
             var model = new EventIndexModel
             {
                 Id = newEvent.Id,
@@ -59,8 +65,9 @@ namespace CoVisiting.Controllers
                 AfterEvent = newEvent.AfterEvent,
                 Replies = replies,
                 Subscribers = newEvent.Subscribers,
-                IsCurrentUserSubscribed = newEvent.Subscribers.Contains(GetUserFromClaimsPrincipal())
-                
+                IsCurrentUserSubscribed = (newEvent.Subscribers == null || newEvent.Subscribers.Count() == 0)
+                                          ? false : newEvent.Subscribers.FirstOrDefault(t => t.UserId == _userManager.GetUserId(User)) == null
+                                          ? false : true 
             };
 
             return View(model);
@@ -119,6 +126,10 @@ namespace CoVisiting.Controllers
 
             _eventService.Add(newEvent).Wait(); //block the current thread until the task is complete
 
+            var updateEvent = _eventService.GetLastEvent();
+
+            _eventService.AddEventSubscriber(updateEvent.Id, user).Wait();
+
             //TODO: Implement Author Rating Management
 
             return RedirectToAction("Index", "Event", new { id = newEvent.Id });
@@ -152,10 +163,6 @@ namespace CoVisiting.Controllers
                     DepartureTime = model.DepartureTimeBefore,
                     ArrivalCity = model.ArrivalCityBefore,
                     ArrivalTime = model.ArrivalTimeBefore
-                },
-                Subscribers = new List<ApplicationUser>()
-                {
-                    GetUserFromClaimsPrincipal()     
                 }
             };
         }
@@ -189,8 +196,15 @@ namespace CoVisiting.Controllers
             }
             else if (reply.ReplyScope == ReplyScope.ForSubscribers)
             {
-                if (reply.Event.Subscribers.Contains(user)) return true;
-                else return false;
+                if (reply.Event.Subscribers == null || reply.Event.Subscribers.Count() == 0)
+                {
+                    return false;
+                }
+                else if (reply.Event.Subscribers.FirstOrDefault(t => t.UserId == _userManager.GetUserId(User)) == null)
+                {
+                    return false;
+                }
+                else return true;
             }
             else if (reply.ReplyScope == ReplyScope.ForAuthor)
             {

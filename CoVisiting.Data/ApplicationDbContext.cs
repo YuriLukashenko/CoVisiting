@@ -16,5 +16,11 @@ namespace CoVisiting.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<EventReply> EventReplies { get; set; }
         public DbSet<Moving> Moving { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<UserEventJoinTable>().HasKey(t => new { t.EventId, t.UserId });
+            base.OnModelCreating(builder);
+        }
     }
 }

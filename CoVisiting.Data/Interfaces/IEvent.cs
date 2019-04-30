@@ -18,6 +18,7 @@ namespace CoVisiting.Data.Interfaces
         Task EditEventContent(int id, string newContent);
 
         IEnumerable<Event> GetEventByCategory(int id);
+        Event GetLastEvent();
         IEnumerable<Event> GetLatestEvents(int n);
         IEnumerable<Event> GetFilteredEvents(Category category, string searchQuery);
         IEnumerable<Event> GetFilteredEvents(string searchQuery);

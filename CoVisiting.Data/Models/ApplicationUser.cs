@@ -14,5 +14,7 @@ namespace CoVisiting.Data.Models
         public DateTime MemberSince { get; set; }
         public bool isActive { get; set; }
         public string City { get; set; }
+
+        public virtual IEnumerable<UserEventJoinTable> Events { get; set; }
     }
 }

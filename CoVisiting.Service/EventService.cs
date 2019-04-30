@@ -53,10 +53,18 @@ namespace CoVisiting.Service
         public async Task AddEventSubscriber(int id, ApplicationUser user)
         {
             var updatingEvent = GetById(id);
-            if (updatingEvent.Subscribers == null)
+            if (updatingEvent.Subscribers == null || updatingEvent.Subscribers.Count() == 0)
             {
-                var inital = new List<ApplicationUser>();
-                inital.Add(user);
+                var inital = new List<UserEventJoinTable>()
+                {
+                    new UserEventJoinTable
+                    {
+                        EventId = id,
+                        Event = updatingEvent,
+                        UserId = user.Id,
+                        ApplicationUser = user
+                    }
+                };
                 updatingEvent.Subscribers = inital;
                 _context.Update(updatingEvent);
                 await _context.SaveChangesAsync();
@@ -64,9 +72,15 @@ namespace CoVisiting.Service
             else
             {
                 var temp = updatingEvent.Subscribers.ToList();
-                if (!temp.Contains(user))
+                if (temp.FirstOrDefault(s => s.UserId == user.Id) == null)
                 {
-                    temp.Add(user);
+                    temp.Add(new UserEventJoinTable
+                    {
+                        EventId = id,
+                        Event = updatingEvent,
+                        UserId = user.Id,
+                        ApplicationUser = user
+                    });
                     updatingEvent.Subscribers = temp;
                     _context.Update(updatingEvent);
                     await _context.SaveChangesAsync();
@@ -80,9 +94,9 @@ namespace CoVisiting.Service
             if (updatingEvent.Subscribers != null)
             {
                 var temp = updatingEvent.Subscribers.ToList();
-                if (temp.Contains(user))
+                if (temp.FirstOrDefault(s => s.UserId == user.Id) != null)
                 {
-                    temp.Remove(user);
+                    temp.Remove(temp.First(s => s.UserId == user.Id));
                     updatingEvent.Subscribers = temp;
                     _context.Update(updatingEvent);
                     await _context.SaveChangesAsync();
@@ -109,6 +123,11 @@ namespace CoVisiting.Service
         public IEnumerable<Event> GetLatestEvents(int n)
         {
             return GetAll().OrderByDescending(newEvent => newEvent.Created).Take(n);
+        }
+
+        public Event GetLastEvent()
+        {
+            return GetAll().Last();
         }
 
         public IEnumerable<Event> GetFilteredEvents(Category category, string searchQuery)
