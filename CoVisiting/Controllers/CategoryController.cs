@@ -29,7 +29,9 @@ namespace CoVisiting.Controllers
                     Id = category.Id,
                     Name = category.Title,
                     Description = category.Description,
-                    ImageUrl = category.ImageUrl
+                    ImageUrl = category.ImageUrl,
+                    EventsCount = category.Events.Count(),
+                    UsersCount = GetUsersCount(category.Events.ToList())
                 });
 
             var model = new CategoryIndexModel()
@@ -38,6 +40,23 @@ namespace CoVisiting.Controllers
             };
 
             return View(model);
+        }
+
+        private int GetUsersCount(List<Event> categoryEvents)
+        {
+            List<ApplicationUser> allSubscribers = new List<ApplicationUser>(); 
+            foreach (var newEvent in categoryEvents)
+            {
+                foreach (var subscriber in newEvent.Subscribers.ToList())
+                {
+                    if (!allSubscribers.Contains(subscriber.ApplicationUser))
+                    {
+                        allSubscribers.Add(subscriber.ApplicationUser);
+                    }
+                }
+            }
+
+            return allSubscribers.Count();
         }
 
         public IActionResult Topic(int id, string searchQuery)

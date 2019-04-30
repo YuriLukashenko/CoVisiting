@@ -1,4 +1,5 @@
 ﻿@model CoVisiting.Models.Category.CategoryIndexModel
+@inject CoVisiting.Service.NumCaseService NumCaseService
 
 <div class="container body-content">
     <div class="row userProfileHeader globalMarginFix_30">
@@ -17,6 +18,14 @@
                         <td class="col-lg-1 CategoryListingImage" style="background-image:url(@category.ImageUrl)"></td>
                         <td class="CategoryListingContent">
                             @category.Name
+                        </td>
+                        <td>
+                            <div class="categoryUsersEvents">
+                                @category.EventsCount @NumCaseService.GetCaseForEventsFromNum(@category.EventsCount)
+                            </div>
+                            <div class="categoryUsersEvents">
+                                @category.UsersCount @NumCaseService.GetCaseForSubsFromNum(@category.UsersCount)
+                            </div>
                         </td>
                         <td class="CategoryListingContent">
                             @category.Description

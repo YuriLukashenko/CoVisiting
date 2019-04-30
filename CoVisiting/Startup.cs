@@ -38,6 +38,7 @@ namespace CoVisiting
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<NumCaseService>();
             services.AddScoped<ICategory, CategoryService>();
             services.AddScoped<IEvent, EventService>();
             services.AddScoped<IApplicationUser, ApplicationUserService>();

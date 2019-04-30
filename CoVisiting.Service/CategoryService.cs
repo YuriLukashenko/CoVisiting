@@ -30,7 +30,7 @@ namespace CoVisiting.Service
 
         public IEnumerable<Category> GetAll()
         {
-            return _context.Categories.Include(category => category.Events);
+            return _context.Categories.Include(category => category.Events).ThenInclude(e => e.Subscribers).ThenInclude(s => s.ApplicationUser);
         }
 
         public IEnumerable<ApplicationUser> GetAllActiveUsers()
