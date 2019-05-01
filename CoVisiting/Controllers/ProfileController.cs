@@ -47,14 +47,24 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
-        public IActionResult Listing()
+        public IActionResult Listing(string searchQuery = null)
         {
-            var users = _userService.GetAll();
+            var users = new List<ApplicationUser>();
+            if (searchQuery == null)
+            {
+                users = _userService.GetAll().ToList();
+            }
+            else
+            {
+                users = _userService.GetFiltered(searchQuery).ToList();
+            }
+
             var profileList = BuildProfileListing(users);
 
             var model = new ProfileListingModel()
             {
-                ProfileList = profileList
+                ProfileList = profileList,
+                SearchQuery = searchQuery
             };
             return View(model);
         }
@@ -88,6 +98,12 @@ namespace CoVisiting.Controllers
             }
 
             return RedirectToAction("Detail", "Profile", new { id = userId });
+        }
+
+        [HttpPost]
+        public IActionResult Search(string searchQuery)
+        {
+            return RedirectToAction("Listing", new { searchQuery });
         }
     }
 }

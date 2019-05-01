@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoVisiting", "CoVisiting\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoVisiting.Data", "CoVisiting.Data\CoVisiting.Data.csproj", "{EE887489-FED9-4EA7-9E4E-4D83AAAC2A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoVisiting.Service", "CoVisiting.Service\CoVisiting.Service.csproj", "{9E27EE4E-C087-4871-86B5-64DC983A2006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoVisiting.Service", "CoVisiting.Service\CoVisiting.Service.csproj", "{9E27EE4E-C087-4871-86B5-64DC983A2006}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

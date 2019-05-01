@@ -21,20 +21,32 @@ namespace CoVisiting.Service
 
         public Event GetById(int id)
         {
-            return _context.Events.Where(newEvent => newEvent.Id == id)
-                .Include(newEvent => newEvent.Author)
-                .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Sender)
-                .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Reciever)
-                .Include(newEvent => newEvent.Category)
-                .Include(newEvent => newEvent.BeforeEvent)
-                .Include(newEvent => newEvent.AfterEvent)
-                .Include(newEvent => newEvent.Subscribers)
+            return _context.Events.Where(e => e.Id == id)
+                .Include(e => e.Author)
+                .Include(e => e.Replies).ThenInclude(reply => reply.Sender)
+                .Include(e => e.Replies).ThenInclude(reply => reply.Reciever)
+                .Include(e => e.Category)
+                .Include(e => e.BeforeEvent)
+                .Include(e => e.AfterEvent)
+                .Include(e => e.Subscribers)
                 .First();
         }
 
         public IEnumerable<Event> GetAll()
         {
             return _context.Events
+                .Include(e => e.Author)
+                .Include(e => e.Replies).ThenInclude(reply => reply.Sender)
+                .Include(e => e.Replies).ThenInclude(reply => reply.Reciever)
+                .Include(e => e.Category)
+                .Include(e => e.BeforeEvent)
+                .Include(e => e.AfterEvent)
+                .Include(e => e.Subscribers);
+        }
+
+        public IEnumerable<Event> GetEventsByUser(string userId)
+        {
+            return _context.Events.Where(newEvent => newEvent.Author.Id == userId)
                 .Include(post => post.Author)
                 .Include(post => post.Replies).ThenInclude(reply => reply.Sender)
                 .Include(newEvent => newEvent.Replies).ThenInclude(reply => reply.Reciever)

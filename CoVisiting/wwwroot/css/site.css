@@ -431,6 +431,14 @@
     background-color: #fff;
 }
 
+.searchUser {
+    margin: 20px 0 0 10px;
+}
+
+    .searchUser:focus {
+        width: 95%;
+    }
+
 .categoryLogoInCategory {
     border-radius: 3px;
     float: left;

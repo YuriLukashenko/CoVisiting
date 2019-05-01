@@ -1,0 +1,57 @@
+﻿@model CoVisiting.Models.Event.EventUserModel
+
+<div class="row ContainerShadow paddingFixB8">
+    <div class="row sectionHeaderResults">
+        <div class="sectionHeading">
+            <span> Події користувача | @Model.UserName </span>
+        </div>
+    </div>
+    <div class="paddingFix8">
+        @if (Model.Events.Any())
+        {
+            @foreach (var newEvent in Model.Events)
+            {
+                <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
+                    <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
+                        <div class="row eventHeader">
+                            <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
+                            <div class="eventListingTitle">
+                                <label>
+                                    @newEvent.Title
+                                </label>
+                            </div>
+                        </div>
+                        <div class="EventCityPlace">
+                            @newEvent.EventCity, @newEvent.EventPlace
+                        </div>
+                        <div class="EventStart">
+                            @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                        <div>
+                            @newEvent.AuthorName
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2 AuthorRatingClass">
+                                +@newEvent.AuthorRating
+                            </div>
+                            <div class="SubscribersReplies">
+                                <div class="SubscriberLogo"> </div>
+                                <div class=""> @newEvent.EventSubscribersCount </div>
+                                <div class="replyLogo"> </div>
+                                <div class=""> @newEvent.RepliesCount.ToString() </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <div class="noEvents">
+                <h3>
+                    Користувач @Model.UserName ще не створював(ла) подій <br />
+                </h3>
+            </div>
+        }
+    </div>
+</div>

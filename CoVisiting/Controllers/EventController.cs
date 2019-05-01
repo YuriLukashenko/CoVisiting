@@ -10,6 +10,7 @@ using CoVisiting.Models.Event;
 using CoVisiting.Models.Reply;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using CoVisiting.Models.Category;
 
 namespace CoVisiting.Controllers
 {
@@ -97,6 +98,45 @@ namespace CoVisiting.Controllers
             };
 
             return View(model);
+        }
+
+        public IActionResult UsersEventsListing(string userId)
+        {
+            var eventsByUser = _eventService.GetEventsByUser(userId);
+
+            var userEventsListing = eventsByUser.Select(newEvent => new EventListingModel
+            {
+                Id = newEvent.Id,
+                Category = GetCategoryListingForEvent(newEvent),
+                Title = newEvent.Title,
+                EventSubscribersCount = newEvent.Subscribers.Count(),
+                EventCity = newEvent.EventCity,
+                EventPlace = newEvent.EventPlace,
+                StartDateTime = newEvent.StartDateTime,
+                AuthorId = newEvent.Author.Id,
+                AuthorName = newEvent.Author.UserName,
+                AuthorRating = newEvent.Author.Rating,
+                RepliesCount = newEvent.Replies.Count()
+            });
+
+            var model = new EventUserModel
+            {
+                Events = userEventsListing,
+                UserName = _userManager.FindByIdAsync(userId).Result.UserName
+        };
+
+            return View(model);
+        }
+
+        private CategoryListingModel GetCategoryListingForEvent(Event newEvent)
+        {
+            var category = newEvent.Category;
+
+            return new CategoryListingModel()
+            {
+                Id = category.Id,
+                ImageUrl = category.ImageUrl
+            };
         }
 
         public async Task<IActionResult> AddSubscriber(int id)

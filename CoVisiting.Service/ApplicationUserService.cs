@@ -28,6 +28,16 @@ namespace CoVisiting.Service
             return _context.ApplicationUsers;
         }
 
+        public IEnumerable<ApplicationUser> GetFiltered(string searchQuery)
+        {
+            return String.IsNullOrEmpty(searchQuery)
+                ? _context.ApplicationUsers 
+                : _context.ApplicationUsers.Where(user 
+                    => user.UserName.Contains(searchQuery) ||
+                       user.Email.Contains(searchQuery) ||
+                       user.City.Contains(searchQuery));
+        }
+
         public async Task SetProfileImage(string id, string path)
         {
             var user = GetById(id);
@@ -40,5 +50,7 @@ namespace CoVisiting.Service
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }
