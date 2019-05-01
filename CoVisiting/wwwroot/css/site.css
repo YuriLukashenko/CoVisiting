@@ -343,6 +343,19 @@
         background-color: #00becc !important;
     }
 
+.btn-map {
+    background-color: #3C3851;
+    color: #fff !important;
+    transition: ease-in 0.2s;
+    border-radius: 0px !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+    .btn-map:hover {
+        transition: ease-in 0.2s;
+        background-color: #007780 !important;
+    }
+
 .btn-newReply {
     background-color: #007780 !important;
     color: #fff !important;

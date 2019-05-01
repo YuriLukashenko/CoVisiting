@@ -20,6 +20,11 @@
             <span class="eventIndexPlace">
                 @Model.EventCity, @Model.EventPlace, @Model.StartDateTime.ToString("dd/MM/yyyy HH:mm")
             </span>
+            <span id="headingBtn">
+                <a href="https://maps.google.com/?q=@Model.EventCity,@Model.EventPlace" target="_blank" class="btn btn-map">
+                    Перейти до мапи
+                </a>
+            </span>
         </div>
     </div>
 
