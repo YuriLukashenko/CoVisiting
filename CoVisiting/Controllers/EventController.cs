@@ -75,11 +75,6 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
-        public IActionResult ShowHide(int id, bool state)
-        {
-            return RedirectToAction("Create", "Event", new { id, state });
-        }
-
         public IActionResult Create(int id, bool state = false)
         {
             var category = _categoryService.GetById(id);

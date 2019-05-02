@@ -707,6 +707,9 @@
     padding: 20px;
 }
 
+.DisplayNon {
+    display: none !important;
+}
 
 .addEventInfo {
     margin: 10px auto;
