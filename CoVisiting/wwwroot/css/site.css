@@ -216,15 +216,16 @@
 }
 
 .eventAuthorImage {
-    height: 160px;
-    width: 160px;
+    height: 145px;
+    width: 145px;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .eventAuthorContainer {
-    padding: 12px;
+    padding: 12px 12px 0 12px;
+    width: 15%;
     color: #444;
     font-family: 'Source Sans Pro', sans-serif;
     border-right: 1px solid #ddd;
@@ -239,11 +240,11 @@
     justify-content: flex-end;
     font-family: 'Source Sans Pro', sans-serif;
     color: #222;
-    padding: 22px;
-    padding-left: 7px; 
+    padding: 10px 0 0 7px;
 }
 
 .eventContentText {
+    margin: 1px;
     font-size: 1.2em;
     display: flex;
     align-items:flex-start;
@@ -432,11 +433,13 @@
 }
 
 .searchUser {
-    margin: 20px 0 0 10px;
+    margin: 5px 0 0 10px;
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
     .searchUser:focus {
-        width: 95%;
+        width: 66%;
     }
 
 .categoryLogoInCategory {
@@ -611,7 +614,13 @@
     align-self: flex-end;
 }
 
-.replyReply{
+.subscriberListings {
+    margin-left: 10px;
+    max-width: 40%;
+    align-self: flex-end;
+}
+
+.replyReply {
     align-self: flex-end;
 }
 
@@ -640,6 +649,10 @@
 
 .marginfix8 {
     margin-top: 8px;
+}
+
+.marginfix0 {
+    margin: 0;
 }
 
 .marginfixB8 {

@@ -62,6 +62,7 @@ namespace CoVisiting.Controllers
                 Content = newEvent.Content,
                 CategoryId = newEvent.Category.Id,
                 CategoryName = newEvent.Category.Title,
+                IsBeforeAfter = newEvent.isBeforeAfter,
                 BeforeEvent = newEvent.BeforeEvent,
                 AfterEvent = newEvent.AfterEvent,
                 Replies = replies,
@@ -188,6 +189,7 @@ namespace CoVisiting.Controllers
                 StartDateTime = model.StartDateTime,
                 Author = user,
                 Category = category,
+                isBeforeAfter = model.isBeforeAfter,
                 BeforeEvent = new Moving()
                 {
                     TransportType = model.TransportTypeBefore,

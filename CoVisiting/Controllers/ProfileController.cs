@@ -47,10 +47,24 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
-        public IActionResult Listing(string searchQuery = null)
+        public IActionResult Listing(int id = 0, string searchQuery = null)
         {
             var users = new List<ApplicationUser>();
-            if (searchQuery == null)
+            string eventName = "";
+            int eventId = 0;
+
+            if (id != 0)
+            {
+                var eventUsers = _eventService.GetById(id).Subscribers.ToList();
+                foreach (var user in eventUsers)
+                {
+                    users.Add(_userService.GetById(user.UserId));
+                }
+
+                eventName = _eventService.GetById(id).Title;
+                eventId = _eventService.GetById(id).Id;
+            }
+            else if (searchQuery == null)
             {
                 users = _userService.GetAll().ToList();
             }
@@ -64,7 +78,10 @@ namespace CoVisiting.Controllers
             var model = new ProfileListingModel()
             {
                 ProfileList = profileList,
-                SearchQuery = searchQuery
+                SearchQuery = searchQuery,
+                EventName = eventName,
+                EventId = eventId
+                
             };
             return View(model);
         }

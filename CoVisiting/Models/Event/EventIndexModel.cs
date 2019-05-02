@@ -26,6 +26,7 @@ namespace CoVisiting.Models.Event
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
+        public bool IsBeforeAfter { get; set; }
         public Moving BeforeEvent { get; set; }
         public Moving AfterEvent { get; set; }
 

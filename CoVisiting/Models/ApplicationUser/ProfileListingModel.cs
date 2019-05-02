@@ -18,5 +18,7 @@ namespace CoVisiting.Models.ApplicationUser
 
         public IEnumerable<ProfileModel> ProfileList { get; set; }
         public string SearchQuery { get; set; }
+        public string EventName { get; set; }
+        public int EventId { get; set; }
     }
 }

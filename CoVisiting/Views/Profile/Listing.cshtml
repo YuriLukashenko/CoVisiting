@@ -2,12 +2,26 @@
 
 <div class="container body-content">
     <div class="row ProfileListingsHeader globalMarginFix_30">
-        <div class="ProfileListingsHeading">
-            Список користувачів
-        </div>
+        @if (String.IsNullOrEmpty(Model.EventName))
+        {
+            <div class="ProfileListingsHeading">
+                Список користувачів
+            </div>
+        }
+        else
+        {
+            <div class="ProfileListingsHeading">
+                Список підписників події @Model.EventName
+            </div>
+             <span id="headingBtn">
+                <a asp-controller="Event" asp-action="Index" asp-route-id=@Model.EventId class="btn btn-back">
+                    Назад до "@Model.EventName"
+                </a>
+            </span>
+        }
         <form asp-controller="Profile" asp-action="Search" method="post">
             <div class="searchForm">
-                <input asp-for="SearchQuery" type="text" placeholder="Пошук..." class="searchBar searchUser" onfocus="clearThis(this)" />
+                <input asp-for="SearchQuery" type="text" placeholder="Пошук..." class="searchBar searchUser" onfocus="clearThis(this)"/>
                 <button type="submit" class="btn btn-categorySearch"></button>
             </div>
         </form>
