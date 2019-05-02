@@ -62,7 +62,7 @@ namespace CoVisiting.Controllers
                 Content = newEvent.Content,
                 CategoryId = newEvent.Category.Id,
                 CategoryName = newEvent.Category.Title,
-                IsBeforeAfter = newEvent.isBeforeAfter,
+                IsBeforeAfter = CheckBeforeAfterVisibility(newEvent),
                 BeforeEvent = newEvent.BeforeEvent,
                 AfterEvent = newEvent.AfterEvent,
                 Replies = replies,
@@ -73,6 +73,18 @@ namespace CoVisiting.Controllers
             };
 
             return View(model);
+        }
+
+        private bool CheckBeforeAfterVisibility(Event newEvent)
+        {
+            if (String.IsNullOrEmpty(newEvent.BeforeEvent.DepartureCity) &&
+                String.IsNullOrEmpty(newEvent.BeforeEvent.ArrivalCity) &&
+                String.IsNullOrEmpty(newEvent.AfterEvent.DepartureCity) &&
+                String.IsNullOrEmpty(newEvent.AfterEvent.ArrivalCity))
+            {
+                return false;
+            }
+            else return true;
         }
 
         public IActionResult Create(int id, bool state = false)
