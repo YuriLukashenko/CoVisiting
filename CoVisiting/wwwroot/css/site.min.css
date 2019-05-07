@@ -1,1 +1,762 @@
-body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
+body {
+    padding: 50px 0 20px 0;
+    background-color: #f5fffa;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.header {
+    background-color: #EEF1F8;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.categoryLogo {
+    background-color: rgba(255, 255, 255, 1);
+    height: 90px;
+    width: 35%;
+    background-size: 100%;
+}
+
+.navLogo {
+    background-image: url("/images/logo.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 150px;
+    margin-right: 12px;
+}
+
+.frontPageSplash {
+    background-image: url("/images/bg-01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.frontPageLearn {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 12px 0 0 32px;
+    height: 360px;
+}
+
+.sectionDescription {
+    color: #EEE;
+}
+
+.frontPageHeading {
+    font-size: 3.2em;
+    margin: 16px 0;
+    color: #00AFBC;
+}
+
+.frontPageSubHeading {
+    font-size: 2em;
+    color: #00AFBC;
+}
+
+.fontPageTopContainer {
+    padding: 40px 80px 42px 40px;
+    border: 1px solid #999;
+    background-color: #2569D5;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+.homeSearch {
+    width: 100%;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 8px;
+    border: 0px;
+    height: 2.3em;
+    font-size: 2.1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    transition: ease-in 0.2s;
+    color: #3C3850;
+    
+}
+
+::-webkit-input-placeholder {
+    color: rgba(12, 56, 81, 0.8);
+}
+
+.homeSearch:focus {
+    border: none !important;
+    outline: none !important;
+    transition: ease-in 0.2s;
+    color: #3C3850;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 4px -6px #000;
+}
+
+#latestsEvents {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin: 4px 0 16px 0;  
+}
+
+#blockEvent {
+    transition: ease-in 0.3s;
+    border-width: thin;
+    border-color: #000000;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-style: solid;
+    margin: 10px;
+    padding: 10px
+}
+
+#blockEvent:hover {
+    transition: ease-in 0.3s;
+    background-color: rgba(0, 175, 188, 0.5);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.eventHeader {
+    background-color: #3C3851;
+    margin: 0px;
+    display: flex;
+}
+
+.eventListingTitle {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 10px;
+}
+
+.text-black {
+    color: #000;
+}
+
+.EventCityPlace {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bolder;
+    font-size: 1.3em;
+    margin-top: 5px;
+}
+
+.EventStart {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+.AuthorRatingClass {
+    border: 1px solid transparent;
+    color: #f5fffa;
+    background-color: green;
+    margin-left: 16px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.SubscribersReplies {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 19px;
+}
+
+.SubscriberLogo {
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    background-image: url("/images/users.png");
+}
+
+.replyLogo {
+    margin-left: 10px;
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    background-image: url("/images/messages.png");
+}
+
+
+/* Event Page */
+.eventTitle {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.eventSubTitle {
+    color: #888;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8em;
+}
+
+.eventData {
+    display: inline-block;
+    padding: 0px;
+}
+
+.eventDate {
+    color: #888;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8em;
+}
+
+.eventLogo {
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+}
+
+.eventAuthorImage {
+    height: 145px;
+    width: 145px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.eventAuthorContainer {
+    padding: 12px 12px 0 12px;
+    width: 15%;
+    color: #444;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-right: 1px solid #ddd;
+}
+
+.eventAuthorName {
+    padding: 0px;
+}
+
+.eventContentContainer {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #222;
+    padding: 10px 0 0 7px;
+}
+
+.eventContentText {
+    margin: 1px;
+    font-size: 1.2em;
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+}
+
+.eventReplyText {
+    font-size: 1.2em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.eventAuthorRating {
+    font-size: 0.9em;
+    color: #159;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/*#headingBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}*/
+
+.eventHeading {
+    color: white;
+    font-size: 1.1em;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 16px 0 16px 10px;
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+.eventNewNameHeader {
+    background-color: #3C3851;
+    padding: 8px 0px 12px 12px;
+}
+
+.eventNewPlaceHeader {
+    background-color: #F39C12;
+    padding-left: 12px;
+}
+
+.eventIndexTitle {
+    font-size: 1.9em;
+}
+
+.eventIndexPlace {
+    font-size: 1.4em;
+}
+
+#headingBtn {
+    float: right;
+    margin-right: 20px;
+}
+
+/*specific buttons*/
+.btn-back {
+    background-color: #007780;
+    color: #fff !important;
+    transition: ease-in 0.2s;
+    border-radius: 0px !important;
+}
+
+    .btn-back:hover {
+        transition: ease-in 0.2s;
+        background-color: #00becc !important;
+    }
+
+.btn-map {
+    background-color: #3C3851;
+    color: #fff !important;
+    transition: ease-in 0.2s;
+    border-radius: 0px !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+    .btn-map:hover {
+        transition: ease-in 0.2s;
+        background-color: #007780 !important;
+    }
+
+.btn-newReply {
+    background-color: #007780 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newReply:hover {
+        transition: ease-in 0.1s;
+        background-color: #3C3851 !important;
+    }
+
+.btn-newEvent {
+    background-color: #C62828 !important;
+    color: #fff !important;
+    transition: ease-in 0.1s;
+    border-radius: 0px !important;
+}
+
+    .btn-newEvent:hover {
+        transition: ease-in 0.1s;
+        background-color: #E53935 !important;
+        color: #fff !important;
+    }
+
+.btn-categorySearch {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
+.noEvents {
+    text-align: center;
+    padding-top: 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.sectionHeader {
+    background-color: #3C3851;
+    padding: 8px 0 24px 24px;
+}
+
+.sectionHeaderResults{
+    background-color: #3C3851;
+    padding-left: 24px;
+    margin: 0; 
+}
+
+.sectionHeading {
+    color: white;
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 16px 0 16px 0;
+    border-bottom: 1px solid #335;
+    margin-bottom: 12px;
+}
+
+/* Forum Topic Page*/
+.searchBar {
+    color: #000000;
+    padding: 3px 5px 2px 12px;
+    margin-top: 4px;
+    background-color: #ddd;
+    width: 10%;
+    transition: ease .3s;
+    border: none;
+}
+
+.searchBar:focus{
+    color: black;
+    width: 60%;
+    background-color: #fff;
+}
+
+.searchUser {
+    margin: 5px 0 0 10px;
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+    .searchUser:focus {
+        width: 66%;
+    }
+
+.categoryLogoInCategory {
+    border-radius: 3px;
+    float: left;
+    margin-right: 20px;
+    height: 80px;
+    width: 80px;
+    background-color: #fff;
+    border: 1px solid #555;
+    background-size: 100%
+}
+
+.eventListingTitleWithoutImage {
+    width: 100%;
+    display: flex;
+    font-size: 1.3em;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 10px;
+}
+
+.ssp{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+}
+
+/*user profile*/
+.userProfileHeader {
+    background-color: #3C3851;
+    padding: 24px 0 24px 12px;
+}
+
+.userProfileHeading {
+    font-size: 1.5em;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+.userProfileImage {
+    margin: 10px 5px 10px 5px;
+    padding: 0;
+    height: 250px;
+    width: 250px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.userProfileName {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5em;
+    margin: 0 5px 10px 5px;
+    padding: 0;
+}
+
+.userProfileContainerInfo {
+    margin-top: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.3em;
+}
+
+.userProfileRating {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Comic Sans MS';
+    font-size: 2em;
+    margin-right: -5px;
+}
+
+.userProfileRatingLabel {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-right: -5px;
+}
+
+.userProfileCountEvents {
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Comic Sans MS';
+    font-size: 2em;
+    margin-left: -5px; 
+}
+
+.userProfileCountEventsLabel {
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    margin-left: -5px;
+}
+
+/*profile listings*/
+.ProfileListingsHeader {
+    background-color: #3C3851;
+    padding: 24px 0 24px 12px;
+}
+
+.ProfileListingsHeading {
+    font-size: 1.5em;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+.ProfileListingImage {
+    background-color: rgba(255, 255, 255, 1);
+    height: 200px;
+    width: 14%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ProfileListingContent {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.7em;
+}
+
+
+.ContainerShadow {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.Replies {
+    margin-top: 3px;
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(60, 56, 81, 0.4), 0 6px 6px rgba(60, 56, 81, 0.4);
+}
+
+.replyDivider {
+    padding: 5px;
+}
+
+.addReplyContainer {
+    background-color: rgba(0, 175, 188, 1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.3);
+    padding: 7px;
+    margin-bottom: -2px;
+}
+
+.eventAuthorForReply {
+    color: #F39C12;
+    text-shadow: #3C3851 1px 0 1px;
+}
+
+.newReplyUser {
+    padding: 20px;
+    margin: 20px;
+    border: 2px dotted rgba(0, 175, 188, 1);
+}
+
+.newReplyScope {
+    padding: 20px;
+    margin: 0px;
+    border: 2px dotted rgba(0, 175, 188, 1);
+}
+
+.newReplyContent {
+    margin: 20px;
+}
+
+.newReplySumbit {
+    margin: 0px 20px 20px 20px;
+}
+
+.subscribeToEvent {
+    max-width: 20%;
+    align-self: flex-end;
+}
+
+.subscriberListings {
+    margin-left: 10px;
+    max-width: 30%;
+    align-self: flex-end;
+}
+
+.replyReply {
+    align-self: flex-end;
+}
+
+.btn-delete {
+    background-color: #222222;
+    color: white;
+    margin-left: 10px;
+}
+
+    .btn-delete:hover {
+        background-color: #333333;
+        color: white;
+    }
+
+.CategoryListingImage {
+    background-color: rgba(255, 255, 255, 1);
+    height: 120px;
+    width: 10%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.CategoryListingContent {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5em;
+}
+
+/*MARGIN && PADDING FIXES*/
+.paddingFix16 {
+    padding: 16px;
+}
+
+.globalMarginFix_30 {
+    margin-left: -30px;
+}
+
+.marginfix8 {
+    margin-top: 8px;
+}
+
+.marginfix0 {
+    margin: 0;
+}
+
+.marginfixB8 {
+    margin-bottom: 8px;
+}
+
+.marginfixL_10B10{
+    margin-left: -10px;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.paddingFix0 {
+    padding: 0px;
+}
+
+.paddingFix8 {
+    padding: 8px;
+}
+
+.paddingFixB8 {
+    padding-bottom: 8px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        background-color: black;
+        display: inline-block;
+}
+
+        .inputfile:focus + label,
+        .inputfile + label:hover {
+            background-color: red;
+        }
+
+.uploadContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 5px solid black;
+    padding: 20px;
+}
+
+.DisplayNon {
+    display: none !important;
+}
+
+.addEventInfo {
+    margin: 10px auto;
+    text-align: center;
+    display: block;
+    width: 200px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.BeforeAfterHeader {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.radio .btn,
+.radio-inline .btn {
+    padding-left: 2em;
+    min-width: 7em;
+}
+
+.radio label,
+
+.radio-inline label {
+
+    text-align: left;
+
+    padding-left: 0.5em;
+
+}
+
+.categoryUsersEvents {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.2em;
+    padding: 10px;
+}
