@@ -32,9 +32,16 @@
         <div class="col-md-2 eventAuthorContainer">
             <div class="col-md-12 eventAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
             <div class="col-md-12 eventAuthorName">
-                <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
+                        @Model.AuthorName
+                    </a>
+                }
+                else
+                {
                     @Model.AuthorName
-                </a>
+                }
             </div>
             <span class="col-md-12 eventData"> @Model.Created.ToString("dd.MM.yyyy")</span>
             @*@if (Model.IsAuthorAdmin)
@@ -43,7 +50,7 @@
                 }*@
         </div>
         <div class="col-md-10 eventContentContainer">
-            @if (Model.IsBeforeAfter)
+            @if (User.Identity.IsAuthenticated && Model.IsBeforeAfter)
             {
                 <div class="col-md-7 eventContentText">
                     @Html.Raw(Model.Content)
