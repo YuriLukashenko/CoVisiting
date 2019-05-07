@@ -92,7 +92,7 @@
         <div class="col-md-12 eventContentText">
             @if (User.Identity.IsAuthenticated)
             {
-                @if (Model.IsCurrentUserSubscribed)
+                if (Model.IsCurrentUserSubscribed)
                  {
                      <a asp-controller="Event" asp-action="DeleteSubscriber" asp-route-id="@Model.Id" class="btn btn-default subscribeToEvent">
                          Відписатись @Model.Subscribers.Count()
@@ -107,6 +107,12 @@
                 <a asp-controller="Profile" asp-action="Listing" asp-route-id="@Model.Id" class="btn btn-info subscriberListings">
                     Переглянути підписників
                 </a>
+                if (User.Identity.Name == Model.AuthorName)
+                {
+                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-delete">
+                        Видалити подію
+                    </a>
+                }
             }
         </div>
     </div>
@@ -151,9 +157,18 @@
                              </div>
                          </div>
                          <div class="col-lg-1 eventContentContainer">
-                             <a asp-controller="Reply" asp-action="Create" asp-route-eventId="@Model.Id" asp-route-recieverId="@reply.AuthorId" class="btn btn-newReply replyReply">
-                                 Відповісти 
-                             </a>
+                             @if (User.Identity.Name == reply.AuthorName)
+                             {
+                                 <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-delete">
+                                     Видалити 
+                                 </a>
+                             }
+                             else
+                             {
+                                 <a asp-controller="Reply" asp-action="Create" asp-route-eventId="@Model.Id" asp-route-recieverId="@reply.AuthorId" class="btn btn-newReply replyReply">
+                                     Відповісти
+                                 </a>
+                             }
                          </div>
                      </div>
                  }

@@ -610,19 +610,30 @@
 }
 
 .subscribeToEvent {
-    max-width: 30%;
+    max-width: 20%;
     align-self: flex-end;
 }
 
 .subscriberListings {
     margin-left: 10px;
-    max-width: 40%;
+    max-width: 30%;
     align-self: flex-end;
 }
 
 .replyReply {
     align-self: flex-end;
 }
+
+.btn-delete {
+    background-color: #222222;
+    color: white;
+    margin-left: 10px;
+}
+
+    .btn-delete:hover {
+        background-color: #333333;
+        color: white;
+    }
 
 .CategoryListingImage {
     background-color: rgba(255, 255, 255, 1);
