@@ -14,6 +14,7 @@ using CoVisiting.Data.Models;
 using CoVisiting.Models;
 using CoVisiting.Service;
 using CoVisiting.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CoVisiting
 {
@@ -45,6 +46,14 @@ namespace CoVisiting
             services.AddScoped<IUpload, UploadSevice>();
             services.AddScoped<IReply, ReplyService>();
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Northwind Service API",
+                    Version = "v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +79,13 @@ namespace CoVisiting
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Northwind Service API V1");
             });
         }
     }
