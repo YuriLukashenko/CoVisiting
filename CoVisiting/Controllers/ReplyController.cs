@@ -56,6 +56,13 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
+        public IActionResult Delete(int replyId, int eventId)
+        {
+            _replyService.Delete(replyId);
+            int id = eventId;
+            return RedirectToAction("Index", "Event", new { id });
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddReply(NewReplyModel model)
         {

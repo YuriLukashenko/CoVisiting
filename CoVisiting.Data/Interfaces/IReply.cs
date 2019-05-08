@@ -8,6 +8,8 @@ namespace CoVisiting.Data.Interfaces
 {
     public interface IReply
     {
-        Task Add(EventReply post);
+        EventReply GetById(int id);
+        Task Add(EventReply reply);
+        Task Delete(int replyId);
     }
 }

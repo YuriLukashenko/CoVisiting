@@ -56,6 +56,11 @@ namespace CoVisiting.Service
                 .Include(newEvent => newEvent.Subscribers);
         }
 
+        public IEnumerable<EventReply> GetRepliesForEvent(int id)
+        {
+            return _context.EventReplies.Where(reply => reply.Event.Id == id);
+        }
+
         public async Task Add(Event newEvent)
         {
             _context.Add(newEvent);
@@ -117,9 +122,13 @@ namespace CoVisiting.Service
         }
 
 
-        public Task Delete(int id)
+
+
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            _context.Events.Remove(GetById(id));
+            _context.EventReplies.RemoveRange(GetRepliesForEvent(id));
+            await _context.SaveChangesAsync();
         }
 
         public Task EditEventContent(int id, string newContent)

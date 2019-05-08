@@ -109,7 +109,7 @@
                 </a>
                 if (User.Identity.Name == Model.AuthorName)
                 {
-                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-delete">
+                    <a asp-controller="Event" asp-action="Delete" asp-route-eventId="@Model.Id" asp-route-categoryId="@Model.CategoryId" class="btn btn-delete">
                         Видалити подію
                     </a>
                 }
@@ -159,7 +159,7 @@
                          <div class="col-lg-1 eventContentContainer">
                              @if (User.Identity.Name == reply.AuthorName)
                              {
-                                 <a asp-controller="Event" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-delete">
+                                 <a asp-controller="Reply" asp-action="Delete" asp-route-replyId="@reply.Id" asp-route-eventId="@Model.Id" class="btn btn-delete">
                                      Видалити 
                                  </a>
                              }

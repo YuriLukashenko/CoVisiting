@@ -136,6 +136,14 @@ namespace CoVisiting.Controllers
             return View(model);
         }
 
+
+        public async Task<IActionResult> Delete(int eventId, int categoryId)
+        {
+            await _eventService.Delete(eventId);
+            int id = categoryId;
+            return RedirectToAction("Topic", "Category", new { id });
+        }
+
         private CategoryListingModel GetCategoryListingForEvent(Event newEvent)
         {
             var category = newEvent.Category;

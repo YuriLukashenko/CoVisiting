@@ -19,6 +19,7 @@ namespace CoVisiting.Data.Interfaces
 
         IEnumerable<Event> GetEventByCategory(int id);
         IEnumerable<Event> GetEventsByUser(string userId);
+        IEnumerable<EventReply> GetRepliesForEvent(int id);
         Event GetLastEvent();
         IEnumerable<Event> GetLatestEvents(int n);
         IEnumerable<Event> GetFilteredEvents(Category category, string searchQuery);
