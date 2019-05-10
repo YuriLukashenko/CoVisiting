@@ -12,6 +12,7 @@ namespace CoVisiting.Data.Interfaces
         IEnumerable<ApplicationUser> GetAll();
         IEnumerable<ApplicationUser> GetFiltered(string searchQuery);
         Task SetProfileImage(string id, string path);
-        Task IncrementRating(string id, Type type);
+        Task IncrementRating(string id, int value);
+        Task DecrementRating(string id, int value);
     }
 }

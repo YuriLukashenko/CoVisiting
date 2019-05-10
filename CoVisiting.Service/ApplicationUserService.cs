@@ -46,11 +46,21 @@ namespace CoVisiting.Service
             await _context.SaveChangesAsync();
         }
 
-        public Task IncrementRating(string id, Type type)
+        public async Task IncrementRating(string id, int value)
         {
-            throw new NotImplementedException();
+            var user = GetById(id);
+            user.Rating += value;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-       
+        public async Task DecrementRating(string id, int value)
+        {
+            var user = GetById(id);
+            user.Rating -= value;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

@@ -18,13 +18,15 @@ namespace CoVisiting.Controllers
     {
         private readonly IEvent _eventService;
         private readonly ICategory _categoryService;
+        private readonly IApplicationUser _applicationService;
 
         private static UserManager<ApplicationUser> _userManager;
 
-        public EventController(IEvent eventService, ICategory categoryService, UserManager<ApplicationUser> userManager)
+        public EventController(IEvent eventService, ICategory categoryService, IApplicationUser applicationService, UserManager<ApplicationUser> userManager)
         {
             _eventService = eventService;
             _categoryService = categoryService;
+            _applicationService = applicationService;
             _userManager = userManager;
         }
 
@@ -139,6 +141,10 @@ namespace CoVisiting.Controllers
 
         public async Task<IActionResult> Delete(int eventId, int categoryId)
         {
+
+            //-5 to user rating by creating new event,
+            _applicationService.DecrementRating(_userManager.GetUserId(User), 5 ).Wait();
+
             await _eventService.Delete(eventId);
             int id = categoryId;
             return RedirectToAction("Topic", "Category", new { id });
@@ -158,8 +164,12 @@ namespace CoVisiting.Controllers
         public async Task<IActionResult> AddSubscriber(int id)
         {
             ApplicationUser user = GetUserFromClaimsPrincipal();
-
+            
             await _eventService.AddEventSubscriber(id, user);
+
+            //increment author rating +10
+            var updatingEvent = _eventService.GetById(id);
+            _applicationService.IncrementRating(updatingEvent.Author.Id, 10).Wait();
 
             return RedirectToAction("Index", "Event", new { id });
         }
@@ -169,6 +179,10 @@ namespace CoVisiting.Controllers
             ApplicationUser user = GetUserFromClaimsPrincipal();
 
             await _eventService.DeleteEventSubscriber(id, user);
+
+            //decrement author rating -10
+            var updatingEvent = _eventService.GetById(id);
+            _applicationService.DecrementRating(updatingEvent.Author.Id, 10).Wait();
 
             return RedirectToAction("Index", "Event", new { id });
         }
@@ -186,7 +200,8 @@ namespace CoVisiting.Controllers
 
             _eventService.AddEventSubscriber(updateEvent.Id, user).Wait();
 
-            //TODO: Implement Author Rating Management
+            //+5 to user rating by creating new event
+            _applicationService.IncrementRating(user.Id, 5).Wait();
 
             return RedirectToAction("Index", "Event", new { id = newEvent.Id });
         }
@@ -215,11 +230,11 @@ namespace CoVisiting.Controllers
                 },
                 AfterEvent = new Moving()
                 {
-                    TransportType = model.TransportTypeBefore,
-                    DepartureCity = model.DepartureCityBefore,
-                    DepartureTime = model.DepartureTimeBefore,
-                    ArrivalCity = model.ArrivalCityBefore,
-                    ArrivalTime = model.ArrivalTimeBefore
+                    TransportType = model.TransportTypeAfter,
+                    DepartureCity = model.DepartureCityAfter,
+                    DepartureTime = model.DepartureTimeAfter,
+                    ArrivalCity = model.ArrivalCityAfter,
+                    ArrivalTime = model.ArrivalTimeAfter
                 }
             };
         }
