@@ -147,7 +147,10 @@ namespace CoVisiting.Controllers
             var deletedEvent = _eventService.GetById(eventId);
             foreach (var subsriber in deletedEvent.Subscribers)
             {
-                _applicationService.DecrementRating(_userManager.GetUserId(User), 10).Wait();
+                if(subsriber.UserId != _userManager.GetUserId(User))
+                {
+                    _applicationService.DecrementRating(_userManager.GetUserId(User), 10).Wait();
+                } 
             }
 
             await _eventService.Delete(eventId);
