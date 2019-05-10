@@ -142,8 +142,13 @@ namespace CoVisiting.Controllers
         public async Task<IActionResult> Delete(int eventId, int categoryId)
         {
 
-            //-5 to user rating by creating new event,
+            //-5 to user rating by creating new event, -10 foreach subs
             _applicationService.DecrementRating(_userManager.GetUserId(User), 5 ).Wait();
+            var deletedEvent = _eventService.GetById(eventId);
+            foreach (var subsriber in deletedEvent.Subscribers)
+            {
+                _applicationService.DecrementRating(_userManager.GetUserId(User), 10).Wait();
+            }
 
             await _eventService.Delete(eventId);
             int id = categoryId;
