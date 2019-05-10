@@ -7,7 +7,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Увійти";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -15,7 +15,7 @@
     <div class="col-md-4">
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Use a local account to log in.</h4>
+                <h4>Для входу використовуйте локальний обліковий запис.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -41,10 +41,10 @@
                 </div>
                 <div class="form-group">
                     <p>
-                        <a asp-action="ForgotPassword">Forgot your password?</a>
+                        <a asp-action="ForgotPassword">Забули пароль?</a>
                     </p>
                     <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Зареєструватися як новий користувач?</a>
                     </p>
                 </div>
             </form>
@@ -60,8 +60,8 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                            Не налаштовано жодних зовнішніх служб аутентифікації. Див. <a href="https://go.microsoft.com/fwlink/?LinkID=532715"> статтю </a>
+                            детальніше про налаштування цієї програми ASP.NET для підтримки входу через зовнішні служби.
                         </p>
                     </div>
                 }
@@ -72,7 +72,7 @@
                             <p>
                                 @foreach (var provider in loginProviders)
                                 {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Увійдіть у свій обліковий запис @provider.DisplayName">@provider.Name</button>
                                 }
                             </p>
                         </div>

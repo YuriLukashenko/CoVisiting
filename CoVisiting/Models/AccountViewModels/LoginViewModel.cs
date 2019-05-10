@@ -10,14 +10,14 @@ namespace CoVisiting.Models.AccountViewModels
     {
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Ім'я")]
         public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запам'ятати?")]
         public bool RememberMe { get; set; }
     }
 }
