@@ -14,6 +14,7 @@ namespace CoVisiting.Models.AccountViewModels
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

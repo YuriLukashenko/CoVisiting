@@ -5,6 +5,7 @@
 
 
 <div class="container body-content">
+
     <div class="row userProfileHeader globalMarginFix_30">
         <div class="userProfileHeading">
             @ViewData["Title"]
@@ -12,8 +13,8 @@
     </div>
 
     <div class="row ContainerShadow paddingFix16 globalMarginFix_30">
-        <div class="col-md-4">
-            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        <div class="col-lg-12 centered">
+            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="width50">
                 <h4>Стоворення нового акаунту</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>

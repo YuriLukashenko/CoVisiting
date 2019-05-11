@@ -760,3 +760,13 @@
     font-size: 1.2em;
     padding: 10px;
 }
+
+.centered{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.width50 {
+    width: 50%;
+}
