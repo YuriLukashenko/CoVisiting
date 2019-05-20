@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoVisiting.Data.Enums;
 using CoVisiting.Data.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace CoVisiting.Models.Event
 {
@@ -20,6 +22,7 @@ namespace CoVisiting.Models.Event
 
         public string Content { get; set; }
         public bool isBeforeAfter { get; set; }
+        public IFormFile UploadedFile { get; set; }
 
         public TransportType TransportTypeBefore { get; set; }
         public string DepartureCityBefore { get; set; }

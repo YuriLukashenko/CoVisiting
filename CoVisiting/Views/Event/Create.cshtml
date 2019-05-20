@@ -9,7 +9,7 @@
     </div>
 
     <div class="row globalMarginFix_30 ContainerShadow paddingFix16">
-        <form asp-action="AddPost" method="post" id="addPostForm">
+        <form asp-controller="Event" asp-action="AddPost" method="post" id="addPostForm" enctype="multipart/form-data">
             <div class="">
                 <div class="form-group">
                     <label asp-for="Title"> Назва події</label>
@@ -37,6 +37,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="addEventImage">
+                <input asp-for="UploadedFile" type="file" name="UploadedFile"/>
             </div>
 
             <div class="btn btn-primary addEventInfo" id="MoreInfo">

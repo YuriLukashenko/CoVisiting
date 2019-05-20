@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CoVisiting.Data.Interfaces;
@@ -11,6 +12,9 @@ using CoVisiting.Models.Reply;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CoVisiting.Models.Category;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace CoVisiting.Controllers
 {
@@ -19,15 +23,19 @@ namespace CoVisiting.Controllers
         private readonly IEvent _eventService;
         private readonly ICategory _categoryService;
         private readonly IApplicationUser _applicationService;
+        private readonly IHostingEnvironment _appEnvironment;
 
         private static UserManager<ApplicationUser> _userManager;
+        private string bufferImageUrl;
 
-        public EventController(IEvent eventService, ICategory categoryService, IApplicationUser applicationService, UserManager<ApplicationUser> userManager)
+
+        public EventController(IEvent eventService, ICategory categoryService, IApplicationUser applicationService, UserManager<ApplicationUser> userManager, IHostingEnvironment appEnvironment)
         {
             _eventService = eventService;
             _categoryService = categoryService;
             _applicationService = applicationService;
             _userManager = userManager;
+            _appEnvironment = appEnvironment;
         }
 
         private ApplicationUser GetUserFromClaimsPrincipal()
@@ -198,9 +206,19 @@ namespace CoVisiting.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPost(NewEventModel model)
         {
+            string path = null;
+            if (model.UploadedFile != null)
+            {
+                path = "/images/events/" + model.UploadedFile.FileName;
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await model.UploadedFile.CopyToAsync(fileStream);
+                }
+            }
+
             ApplicationUser user = GetUserFromClaimsPrincipal();
 
-            var newEvent = BuildEvent(model, user);
+            var newEvent = BuildEvent(model, user, path);
 
             _eventService.Add(newEvent).Wait(); //block the current thread until the task is complete
 
@@ -214,7 +232,7 @@ namespace CoVisiting.Controllers
             return RedirectToAction("Index", "Event", new { id = newEvent.Id });
         }
 
-        private Event BuildEvent(NewEventModel model, ApplicationUser user)
+        private Event BuildEvent(NewEventModel model, ApplicationUser user, string path)
         {
            var category = _categoryService.GetById(model.CategoryId);
            return new Event()
@@ -228,6 +246,7 @@ namespace CoVisiting.Controllers
                 Author = user,
                 Category = category,
                 isBeforeAfter = model.isBeforeAfter,
+                EventImageUrl = path,
                 BeforeEvent = new Moving()
                 {
                     TransportType = model.TransportTypeBefore,

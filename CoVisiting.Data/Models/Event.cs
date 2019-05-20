@@ -24,6 +24,8 @@ namespace CoVisiting.Data.Models
 
         public virtual IEnumerable<EventReply> Replies { get; set; }
         public virtual IEnumerable<UserEventJoinTable> Subscribers { get; set; }
+
+        public string EventImageUrl { get; set; }
     }
 
     
