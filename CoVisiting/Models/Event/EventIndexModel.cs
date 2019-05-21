@@ -34,5 +34,6 @@ namespace CoVisiting.Models.Event
         public IEnumerable<UserEventJoinTable> Subscribers { get; set; }
 
         public bool IsCurrentUserSubscribed { get; set; }
+        public string EventImageUrl { get; set; }
     }
 }

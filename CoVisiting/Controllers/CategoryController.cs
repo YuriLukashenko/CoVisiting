@@ -78,7 +78,8 @@ namespace CoVisiting.Controllers
                 EventSubscribersCount = newEvent.Subscribers.Count(),
                 StartDateTime = newEvent.StartDateTime,
                 RepliesCount = newEvent.Replies.Count(),
-                Category = BuildCategoryListing(newEvent)
+                Category = BuildCategoryListing(newEvent),
+                EventImageUrl = newEvent.EventImageUrl
             });
 
             var model = new CategoryTopicModel

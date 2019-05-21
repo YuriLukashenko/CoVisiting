@@ -1,6 +1,13 @@
 ﻿@model CoVisiting.Models.Event.EventIndexModel
 
 <div class="container body-content">
+    
+    @if (!String.IsNullOrEmpty(Model.EventImageUrl))
+    {
+        <div class="row eventImage" style="background-image: url(@Model.EventImageUrl)">
+        </div>
+    }
+    
     <div class="row eventNewNameHeader">
         <div class="eventHeading">
             <span class="eventIndexTitle">
@@ -14,7 +21,6 @@
         </div>
     </div>
 
-
     <div class="row eventNewPlaceHeader">
         <div class="eventHeading">
             <span class="eventIndexPlace">
@@ -27,7 +33,6 @@
             </span>
         </div>
     </div>
-
     <div class="row ContainerShadow">
         <div class="col-md-2 eventAuthorContainer">
             <div class="col-md-12 eventAuthorImage" style="background-image: url(@Model.AuthorImageUrl)"></div>
@@ -93,17 +98,17 @@
             @if (User.Identity.IsAuthenticated)
             {
                 if (Model.IsCurrentUserSubscribed)
-                 {
-                     <a asp-controller="Event" asp-action="DeleteSubscriber" asp-route-id="@Model.Id" class="btn btn-default subscribeToEvent">
-                         Відписатись @Model.Subscribers.Count()
-                     </a>
-                 }
-                 else
-                 {
-                     <a asp-controller="Event" asp-action="AddSubscriber" asp-route-id="@Model.Id" class="btn btn-danger subscribeToEvent">
-                         Підписатись @Model.Subscribers.Count()
-                     </a>
-                 }
+                {
+                    <a asp-controller="Event" asp-action="DeleteSubscriber" asp-route-id="@Model.Id" class="btn btn-default subscribeToEvent">
+                        Відписатись @Model.Subscribers.Count()
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Event" asp-action="AddSubscriber" asp-route-id="@Model.Id" class="btn btn-danger subscribeToEvent">
+                        Підписатись @Model.Subscribers.Count()
+                    </a>
+                }
                 <a asp-controller="Profile" asp-action="Listing" asp-route-id="@Model.Id" class="btn btn-info subscriberListings">
                     Переглянути підписників
                 </a>
@@ -160,7 +165,7 @@
                              @if (User.Identity.Name == reply.AuthorName)
                              {
                                  <a asp-controller="Reply" asp-action="Delete" asp-route-replyId="@reply.Id" asp-route-eventId="@Model.Id" class="btn btn-delete">
-                                     Видалити 
+                                     Видалити
                                  </a>
                              }
                              else

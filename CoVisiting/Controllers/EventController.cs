@@ -47,6 +47,7 @@ namespace CoVisiting.Controllers
 
         public IActionResult Index(int id)
         {
+            if (id == 0) return View(null);
             var newEvent = _eventService.GetById(id);
 
             var replies = BuildEventReplies(newEvent.Replies);
@@ -77,6 +78,7 @@ namespace CoVisiting.Controllers
                 AfterEvent = newEvent.AfterEvent,
                 Replies = replies,
                 Subscribers = newEvent.Subscribers,
+                EventImageUrl = newEvent.EventImageUrl,
                 IsCurrentUserSubscribed = (newEvent.Subscribers == null || newEvent.Subscribers.Count() == 0)
                                           ? false : newEvent.Subscribers.FirstOrDefault(t => t.UserId == _userManager.GetUserId(User)) == null
                                           ? false : true 
@@ -134,7 +136,8 @@ namespace CoVisiting.Controllers
                 AuthorId = newEvent.Author.Id,
                 AuthorName = newEvent.Author.UserName,
                 AuthorRating = newEvent.Author.Rating,
-                RepliesCount = newEvent.Replies.Count()
+                RepliesCount = newEvent.Replies.Count(),
+                EventImageUrl = newEvent.EventImageUrl
             });
 
             var model = new EventUserModel

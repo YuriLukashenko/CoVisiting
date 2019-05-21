@@ -21,5 +21,6 @@ namespace CoVisiting.Models.Event
         public CategoryListingModel Category { get; set; }
 
         public int RepliesCount { get; set; }
+        public string EventImageUrl { get; set; }
     }
 }

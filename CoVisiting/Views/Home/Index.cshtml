@@ -16,29 +16,29 @@
         <h3 id="latestsEvents"> Найближчі події </h3>
         @foreach (var newEvent in Model.LatestEvents)
         {
-            <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
-                <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
-                    <div class="row eventHeader">
-                        <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
-                        <div class="eventListingTitle">
-                            <label>
-                                @newEvent.Title
-                            </label>
-                        </div>
+      
+            <div class="row col-lg-3 blockEvent">
+                <div class="row eventHeader">
+                    <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
+                    <div class="eventListingTitle">
+                        <label>
+                            @newEvent.Title
+                        </label>
                     </div>
-                    <div class="EventCityPlace">
-                        @newEvent.EventCity, @newEvent.EventPlace
+                </div>
+                <div class="EventCityPlace">
+                    @newEvent.EventCity, @newEvent.EventPlace
+                </div>
+                <div class="EventStart">
+                    @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
+                            @newEvent.AuthorName
+                        </a>
                     </div>
-                    <div class="EventStart">
-                        @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
-                    </div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div>
-                            <a asp-controller="Profile" asp-action="Detail" asp-route-id="@newEvent.AuthorId">
-                                @newEvent.AuthorName
-                            </a>
-                        </div>
 
                     <div class="row">
                         <div class="col-lg-2 AuthorRatingClass">
@@ -51,10 +51,11 @@
                             <div class=""> @newEvent.RepliesCount.ToString() </div>
                         </div>
                     </div>
-                    }
-                </div>
-            </a>
+                }
+                <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
+                    <img src="@Url.Content(newEvent.EventImageUrl)" class="img-top" />
+                </a>
+            </div>        
         }
-
     </div>
 </div>
