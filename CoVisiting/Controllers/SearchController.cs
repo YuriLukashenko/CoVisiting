@@ -37,7 +37,8 @@ namespace CoVisiting.Controllers
                 AuthorId = newEvent.Author.Id,
                 AuthorName = newEvent.Author.UserName,
                 AuthorRating = newEvent.Author.Rating,
-                RepliesCount = newEvent.Replies.Count()
+                RepliesCount = newEvent.Replies.Count(),
+                EventImageUrl = newEvent.EventImageUrl
             });
 
             var model = new SearchResultModel

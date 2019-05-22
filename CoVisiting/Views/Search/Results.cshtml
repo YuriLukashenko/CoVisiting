@@ -16,38 +16,39 @@
         {
             foreach (var newEvent in Model.Events)
             {
-                <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
-                    <div class="row col-lg-3 col-md-4 col-sm-6 col-xs-12 " id="blockEvent">
-                        <div class="row eventHeader">
-                            <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
-                            <div class="eventListingTitle">
-                                <label>
-                                    @newEvent.Title
-                                </label>
-                            </div>
-                        </div>
-                        <div class="EventCityPlace">
-                            @newEvent.EventCity, @newEvent.EventPlace
-                        </div>
-                        <div class="EventStart">
-                            @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
-                        </div>
-                        <div>
-                            @newEvent.AuthorName
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2 AuthorRatingClass">
-                                +@newEvent.AuthorRating
-                            </div>
-                            <div class="SubscribersReplies">
-                                <div class="SubscriberLogo"> </div>
-                                <div class=""> @newEvent.EventSubscribersCount </div>
-                                <div class="replyLogo"> </div>
-                                <div class=""> @newEvent.RepliesCount.ToString() </div>
-                            </div>
+                <div class="row col-lg-3 blockEvent">
+                    <div class="row eventHeader">
+                        <div class="categoryLogo" style="background-image: url(@newEvent.Category.ImageUrl);"> </div>
+                        <div class="eventListingTitle">
+                            <label>
+                                @newEvent.Title
+                            </label>
                         </div>
                     </div>
-                </a>
+                    <div class="EventCityPlace">
+                        @newEvent.EventCity, @newEvent.EventPlace
+                    </div>
+                    <div class="EventStart">
+                        @newEvent.StartDateTime.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                    <div>
+                        @newEvent.AuthorName
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 AuthorRatingClass">
+                            +@newEvent.AuthorRating
+                        </div>
+                        <div class="SubscribersReplies">
+                            <div class="SubscriberLogo"> </div>
+                            <div class=""> @newEvent.EventSubscribersCount </div>
+                            <div class="replyLogo"> </div>
+                            <div class=""> @newEvent.RepliesCount.ToString() </div>
+                        </div>
+                    </div>
+                    <a asp-controller="Event" asp-action="Index" asp-route-id="@newEvent.Id" class="text-black">
+                        <img src="@Url.Content(newEvent.EventImageUrl)" class="img-top" />
+                    </a>
+                </div>
             }
         }
         else
