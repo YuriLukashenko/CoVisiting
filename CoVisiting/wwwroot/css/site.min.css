@@ -94,28 +94,47 @@ body {
 }
 
 #latestsEvents {
+    display: flex;
+    justify-content: center;
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
     margin: 4px 0 16px 0;  
 }
 
-#blockEvent {
+.blockEvent {
+    width: 29%;
     transition: ease-in 0.3s;
     border-width: thin;
     border-color: #000000;
     background-color: rgba(255, 255, 255, 0.9);
     border-style: solid;
-    margin: 10px;
-    padding: 10px
+    margin: 10px 10px 10px 30px;
+    padding: 10px;
 }
 
-#blockEvent:hover {
-    transition: ease-in 0.3s;
-    background-color: rgba(0, 175, 188, 0.5);
-    margin-left: 20px;
-    margin-right: 20px;
-}
+    .blockEvent .img-top {
+        height: 100%;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 1s linear;
+        position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: ease-in 0.25s;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+
+
+    .blockEvent:hover .img-top {
+        visibility: visible;
+        opacity: 1;
+    }
+
+
 
 .eventHeader {
     background-color: #3C3851;
@@ -307,6 +326,13 @@ body {
     }
 }
 
+.eventImage {
+    width: 102.7%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 .eventNewNameHeader {
     background-color: #3C3851;
@@ -666,6 +692,10 @@ body {
     margin: 0;
 }
 
+.marginfixR8 {
+    margin-right: 8px;
+}
+
 .marginfixB8 {
     margin-bottom: 8px;
 }
@@ -729,6 +759,15 @@ body {
     width: 200px;
     font-family: 'Source Sans Pro', sans-serif;
 }
+
+.addEventImage {
+    margin: 0px auto;
+    text-align: center;
+    display: flex;
+    width: 200px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 
 .BeforeAfterHeader {
     margin: 0 auto;
